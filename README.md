@@ -30,7 +30,7 @@ Ser um local de envolvimento para desenvolvedores (Não importa se é Backend, F
 
 # :construction_worker: Instalação
 
-Inicialmente você deve ter em sua máquina [NodeJS](), [Yarn](), [Git]() e então use um dos comandos abaixo para clonar este repositório:
+Inicialmente você deve ter em sua máquina [NodeJS](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/), [Git](https://git-scm.com/) e então use um dos comandos abaixo para clonar este repositório:
 
 Se estiver usando HTTPS:
 
