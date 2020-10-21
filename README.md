@@ -1,45 +1,110 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div style="text-align: center">
 
-## Available Scripts
+# Dummy Code
 
-In the project directory, you can run:
+</div>
 
-### `yarn start`
+## Proposta
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Ser um local de envolvimento para desenvolvedores (Não importa se é Backend, Frontend, DevOps ou Designer. Se você está envolvido nessa área, serve).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# :pushpin: Tabela de Conteúdos
 
-### `yarn test`
+[:pushpin: Inicialização](#pushpin-tabela-de-conteúdos)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[:construction_worker: Instalação](#construction_worker-instalação)
 
-### `yarn build`
+[:runner: Primeiros passos](#runner-primeiros-passos)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[:building_construction: Estrutura](#building_construction-estrutura)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+[:computer: Tecnologias](##computer-tecnologias)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[:thinking: Como contribuir](#thinking-como-contribuir)
 
-### `yarn eject`
+# :construction_worker: Instalação
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Inicialmente você deve ter em sua máquina [NodeJS](), [Yarn](), [Git]() e então use um dos comandos abaixo para clonar este repositório:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Se estiver usando HTTPS:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`git clone https://github.com/jeanmolossi/dummy-code.git`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Se estiver usando SSH:
 
-## Learn More
+`git clone git@github.com:jeanmolossi/dummy-code.git`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Ou então com a Github-cli:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# dummy-code
+`gh repo clone jeanmolossi/dummy-code`
+
+# :runner: Primeiros passos
+
+Após os passos de [instalação](#construction_worker-instalação) você deve acessar a pasta raiz do projeto e usar o comando:
+
+`yarn start:dev`
+
+# :building_construction: Estrutura
+
+## :open_file_folder: Diretórios
+
+```
+src/
+  assets/
+    images/
+    styles/
+  components/
+    layout/
+    shared/
+  pages/
+  routes/
+  store/
+    modules/
+  utils/
+```
+
+## :computer: Tecnologias
+
+- styled-components;
+- redux;
+- redux-saga;
+- framer-motion;
+
+### :question: Questões ocasionais
+
+- Por que há um `index.ts` dentro de algumas pastas?
+
+R: Para exportação. Este index deve conter a exportação de componentes e afins das subpastas daquele modulo.
+
+Exemplo:
+
+```
+pages/
+  profile/
+  courses/
+  index.ts
+```
+
+Conteúdo `index.ts`:
+
+```ts
+export { default as Profile } from "./profile";
+export { default as Courses } from "./courses";
+```
+
+---
+
+- Por que usar Redux?
+
+R: Redux é um excelente gerenciador de estados. Com o intuito de aprendizado de ferramenta usaremos Redux + Saga para tal neste projeto.
+
+Para outras questões, fique a vontade para me chamar no discord `jeanmolossi#3153` ou no [telegram](https://t.me/jeanmolossi). Assista também às minhas Lives na [Twitch](https://twitch.tv/jeanmolossi).
+
+# :thinking: Como contribuir
+
+- Faça um fork desse repositório;
+- Cria uma branch com a sua feature: `git checkout -b minha-feature`;
+- Faça commit das suas alterações: `git commit -m 'Feat: Minha nova feature'`;
+- Faça push para a sua branch: `git push origin minha-feature`.
+
+Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
