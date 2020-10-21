@@ -4,23 +4,29 @@
 
 </div>
 
+<div styles="text-align:center; margin: 0 auto; width: 100%;">
+
+[![GitHub issues](https://img.shields.io/github/issues/jeanmolossi/dummy-code?style=flat-square)](https://github.com/jeanmolossi/dummy-code/issues)
+[![GitHub forks](https://img.shields.io/github/forks/jeanmolossi/dummy-code?style=flat-square)](https://github.com/jeanmolossi/dummy-code/network)
+[![GitHub stars](https://img.shields.io/github/stars/jeanmolossi/dummy-code?style=flat-square)](https://github.com/jeanmolossi/dummy-code/stargazers)
+[![GitHub license](https://img.shields.io/github/license/jeanmolossi/dummy-code?style=flat-square)](https://github.com/jeanmolossi/dummy-code)
+
+Este projeto está sendo desenvolvido em Live com o objetivo de aprender novas técnias e treinar outras.
+
+</div>
+
 ## Proposta
 
 Ser um local de envolvimento para desenvolvedores (Não importa se é Backend, Frontend, DevOps ou Designer. Se você está envolvido nessa área, serve).
 
 # :pushpin: Tabela de Conteúdos
 
-[:pushpin: Inicialização](#pushpin-tabela-de-conteúdos)
-
-[:construction_worker: Instalação](#construction_worker-instalação)
-
-[:runner: Primeiros passos](#runner-primeiros-passos)
-
-[:building_construction: Estrutura](#building_construction-estrutura)
-
-[:computer: Tecnologias](##computer-tecnologias)
-
-[:thinking: Como contribuir](#thinking-como-contribuir)
+- [:pushpin: Inicialização](#pushpin-tabela-de-conteúdos)
+- [:construction_worker: Instalação](#construction_worker-instalação)
+- [:runner: Primeiros passos](#runner-primeiros-passos)
+- [:building_construction: Estrutura](#building_construction-estrutura)
+- [:computer: Tecnologias](##computer-tecnologias)
+- [:thinking: Como contribuir](#thinking-como-contribuir)
 
 # :construction_worker: Instalação
 
