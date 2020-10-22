@@ -48,6 +48,14 @@ Ou então com a Github-cli:
 
 Após os passos de [instalação](#construction_worker-instalação) você deve acessar a pasta raiz do projeto e usar o comando:
 
+`yarn`
+
+&&
+
+`yarn start:api`
+
+&&
+
 `yarn start:dev`
 
 # :building_construction: Estrutura
