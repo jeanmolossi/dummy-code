@@ -8,8 +8,7 @@ import {
   FiUser,
 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { MainLayout, Input, Button } from '../../components';
-import SuccessModal from '../../components/layout/SuccessModal';
+import { MainLayout, Input, Button, SuccessModal } from '../../components';
 import { useModal } from '../../utils';
 import { Container, Logo, ButtonsContainer } from './styles';
 
