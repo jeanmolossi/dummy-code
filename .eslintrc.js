@@ -31,6 +31,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react-hooks/exhaustive-deps': 'error',
+    'react/no-unused-prop-types': 'off',
 
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
