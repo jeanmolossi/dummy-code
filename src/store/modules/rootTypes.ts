@@ -1,4 +1,4 @@
-import { ExampleState } from './example';
+import { ExampleState } from './example/types';
 
 export type ActionReturnType<A = string, T = any> = {
   type: A;
