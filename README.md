@@ -44,13 +44,13 @@ Ou então com a Github-cli:
 
 `gh repo clone jeanmolossi/dummy-code`
 
-# :runner: Primeiros passos
-
-Após os passos de [instalação](#construction_worker-instalação) você deve acessar a pasta raiz do projeto e usar o comando:
+e após isso executar
 
 `yarn`
 
-&&
+# :runner: Primeiros passos
+
+Após os passos de [instalação](#construction_worker-instalação) você deve acessar a pasta raiz do projeto e usar o comando:
 
 `yarn start:api`
 
