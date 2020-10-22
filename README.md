@@ -76,6 +76,84 @@ src/
 - redux-saga;
 - framer-motion;
 
+## :pill: Redux + Redux Saga
+
+Dentro de `store` há a seguinte estrutura de diretórios e arquivos:
+
+```
+store/
+  modules/
+    example/
+      actions.ts
+      index.ts
+      reducer.ts
+      saga.ts
+      types.ts
+    rootReducer.ts
+    rootSaga.ts
+    rootTypes.ts
+  index.ts
+```
+
+- `store/index.ts` é responsável por criar e exportar o store;
+- `store/modules/rootReducer.ts` é responsável por combinar os reducers dos modules subsequentes e exportar um único reducer central para o store;
+- `store/modules/rootSaga.ts` é semelhante ao `rootReducer.ts` porém sua entidade é o saga de cada modulo;
+- `store/modules/rootTypes` é responsável por qualquer tipo de tipagem compartilhada entre todos os módulos e pelos `Roots`;
+- `store/modules/example`
+  - `actions.ts` responsável pela declaração das actions do módulo;
+  - `index.ts` responsável pela exportação centralizada do módulo;
+  - `reducer.ts` responsável pelo controle de estado do módulo. Logo, mutações de estado devem ficar neste arquivo;
+  - `saga.ts` responsável por side effects em estados. Qualquer tipo de mutação de estado assíncrono deve resgatar os dados para o payload dentro do saga antes de disparar (dispatch) uma action. Actions assíncronas devem ser compostas por uma estrutura de 3 actions:
+    - `@module/ACTION_REQUEST`;
+    - `@module/ACTION_SUCCESS`;
+    - `@module/ACTION_FAILURE`;
+  - `types.ts` responsável pela tipagem de `actions`, `reducer states` e `payloads`;
+    - Toda action deve extender a `rootType ActionReturnType<A, T>`;
+
+## :writing_hand: Escrita de tipagem
+
+Em `store/modules/rootTypes.ts` há um tipo que deve ser extendido para cada action em cada módulo.
+
+A estrutura de `ActionReturnType<A, T>` é a seguinte:
+
+```ts
+export type ActionReturnType<A = string, T = any> = {
+  type: A;
+  payload: T;
+};
+```
+
+onde `A` é sua action type `@module/EXAMPLE` e `T` é o tipo do que virá através do payload:
+
+```ts
+export type PayloadExample = {
+  any_object: {
+    any_data: any;
+    any_other_data: any[];
+  };
+  any_array: any[];
+};
+```
+
+O resultado final da action dentro do módulo, seria algo como:
+
+```ts
+export type ExampleAction = ActionReturnType<'@module/EXAMPLE', PayloadExample>;
+```
+
+**Para cada novo módulo deve ser adicionado ao RootState o Tipo do Estado do novo módulo:**
+
+`store/modules/newExample`
+
+agora com o novo módulo `newExample`, `interface RootState` deve estar dessa forma:
+
+```ts
+export interface RootState {
+  example: ExampleState;
+  newExample: NewExampleState;
+}
+```
+
 ### :question: Questões ocasionais
 
 - Por que há um `index.ts` dentro de algumas pastas?
@@ -94,8 +172,8 @@ pages/
 Conteúdo `index.ts`:
 
 ```ts
-export { default as Profile } from "./profile";
-export { default as Courses } from "./courses";
+export { default as Profile } from './profile';
+export { default as Courses } from './courses';
 ```
 
 ---
