@@ -17,7 +17,11 @@ export const Container = styled.div`
   }
 `;
 
-export const IconBox = styled.div``;
+export const IconBox = styled.div`
+  height: 100%;
+  display: flex;
+  place-content: center;
+`;
 
 export const ToggleButton = styled.button.attrs({ type: 'button' })`
   background: transparent;
