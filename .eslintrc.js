@@ -8,7 +8,8 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -27,6 +28,9 @@ module.exports = {
     'prettier/prettier': 'error',
 
     'react/prop-types': 'off',
+    'react/require-default-props': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react-hooks/exhaustive-deps': 'error',
 
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
