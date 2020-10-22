@@ -6,7 +6,7 @@ interface MainLayoutProps {
 }
 
 const MainLayout = ({ children }: MainLayoutProps) => {
-  return <Container>{children}</Container>;
+  return <Container id="main-layout">{children}</Container>;
 };
 
 export default MainLayout;
