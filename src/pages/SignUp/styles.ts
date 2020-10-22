@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../../components';
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ export const Container = styled.div`
   row-gap: var(--spacing-lg);
 
   > form {
-    margin: var(--spacing-xxl) 0;
+    margin: var(--spacing-xl) 0;
   }
 `;
 
@@ -24,5 +25,11 @@ export const Logo = styled.div`
 
 export const ButtonsContainer = styled.div`
   display: flex;
-  flex-direction: column;
+
+  width: 100%;
+  column-gap: var(--spacing-md);
+
+  > ${Button}:last-child {
+    width: 100%;
+  }
 `;

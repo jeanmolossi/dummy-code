@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { SignIn } from '../pages';
+import { ForgotPassword, SignIn, SignUp } from '../pages';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={SignIn} />
+        <Route path="/" exact component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/forgot-password" component={ForgotPassword} />
       </Switch>
     </BrowserRouter>
   );
