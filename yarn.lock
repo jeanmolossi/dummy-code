@@ -6002,6 +6002,11 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
+immer@^7.0.14:
+  version "7.0.14"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.14.tgz#3e605f8584b15a9520d2f2f3fda9441cc9170d25"
+  integrity sha512-BxCs6pJwhgSEUEOZjywW7OA8DXVzfHjkBelSEl0A+nEu0+zS4cFVdNOONvt55N4WOm8Pu4xqSPYxhm1Lv2iBBA==
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -7326,10 +7331,6 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
-
-"line@git+https://github.com/etabits/node-line.git":
-  version "0.6.0"
-  resolved "git+https://github.com/etabits/node-line.git#d3b29093eace9adb3e3649d99b0a27e466fb3748"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
@@ -9474,13 +9475,6 @@ process@^0.11.10:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
-
-produce@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/produce/-/produce-0.4.1.tgz#2db2f0a033924a334f5e52a5055ac7efb965c618"
-  integrity sha1-LbLwoDOSSjNPXlKlBVrH77llxhg=
-  dependencies:
-    line "git+https://github.com/etabits/node-line.git"
 
 progress@^2.0.0:
   version "2.0.3"
