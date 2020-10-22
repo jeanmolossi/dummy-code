@@ -50,6 +50,16 @@ e após isso executar
 
 # :runner: Primeiros passos
 
+Extensões recommendadas VSCode:
+
+- [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Prettier-eslint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
+- [Editor config](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [Styled components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+- Bônus
+  - [Material Icon Folder Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+
 Após os passos de [instalação](#construction_worker-instalação) você deve acessar a pasta raiz do projeto e usar o comando:
 
 `yarn start:api`
