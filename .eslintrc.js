@@ -32,6 +32,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react-hooks/exhaustive-deps': 'error',
     'react/no-unused-prop-types': 'off',
+    'react/jsx-wrap-multilines': 'off',
 
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
