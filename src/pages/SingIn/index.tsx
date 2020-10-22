@@ -7,6 +7,7 @@ import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignIn = () => {
   const handleSubmit = useCallback(data => {
+    // eslint-disable-next-line no-console
     console.log(data);
   }, []);
 

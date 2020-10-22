@@ -18,6 +18,7 @@ const SignUp = () => {
 
   const handleSubmit = useCallback(
     data => {
+      // eslint-disable-next-line no-console
       console.log(data);
 
       onOpen();
@@ -59,12 +60,19 @@ const SignUp = () => {
       </Container>
 
       <SuccessModal
-        isOpen
+        isOpen={isOpen}
         onClose={onClose}
-        title="Funfou"
-        description="Funfou mesmo"
+        title="Cadastro completo"
+        Description={
+          <>
+            Bem vindo à plataforma. Agora você faz parte da comunidade.
+            <br />
+            <br />
+            Você já pode fazer login.
+          </>
+        }
         goRoute="/"
-        textButton="Voltar para algum lugar"
+        textButton="Voltar e fazer login"
       />
     </MainLayout>
   );

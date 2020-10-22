@@ -1,18 +1,13 @@
 import React, { useCallback } from 'react';
 import { Form } from '@unform/web';
-import {
-  FiArrowLeft,
-  FiArrowRight,
-  FiLock,
-  FiMail,
-  FiUser,
-} from 'react-icons/fi';
+import { FiArrowLeft, FiArrowRight, FiMail } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { MainLayout, Input, Button } from '../../components';
 import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignUp = () => {
   const handleSubmit = useCallback(data => {
+    // eslint-disable-next-line no-console
     console.log(data);
   }, []);
 
