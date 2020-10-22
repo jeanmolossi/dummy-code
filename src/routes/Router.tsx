@@ -1,18 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { SignIn } from '../pages';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route
-          path="/"
-          component={() => (
-            <div>
-              <h1>Initial Route</h1>
-            </div>
-          )}
-        />
+        <Route path="/" component={SignIn} />
       </Switch>
     </BrowserRouter>
   );
