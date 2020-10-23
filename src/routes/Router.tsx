@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ForgotPassword, SignIn, SignUp } from '../pages';
+import { ForgotPassword, Home, SignIn, SignUp } from '../pages';
 
 const Router = () => {
   return (
@@ -9,6 +9,8 @@ const Router = () => {
         <Route path="/" exact component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/forgot-password" component={ForgotPassword} />
+
+        <Route path="/home" component={Home} />
       </Switch>
     </BrowserRouter>
   );
