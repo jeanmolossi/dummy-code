@@ -26,6 +26,7 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': 'error',
+    'camelcase': 'off',
 
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
@@ -33,6 +34,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'react/no-unused-prop-types': 'off',
     'react/jsx-wrap-multilines': 'off',
+    'react/jsx-one-expression-per-line': 'off',
 
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
