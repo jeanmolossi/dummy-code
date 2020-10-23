@@ -6,6 +6,7 @@ export const StorieViewModal = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   background: #3ff;
+  z-index: 3;
 
   > h3 {
     position: absolute;

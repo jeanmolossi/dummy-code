@@ -31,6 +31,7 @@ export const InputBox = styled(motion.div)`
   flex: 1;
   background-color: var(--dark-200);
   border-radius: var(--radii-sm);
+  z-index: 1;
 
   > input {
     padding: var(--padding-md) var(--padding-sm);
