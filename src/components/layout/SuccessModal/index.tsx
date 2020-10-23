@@ -46,6 +46,12 @@ const tickVariants = {
   unchecked: { pathLength: 0 },
 };
 
+const transition = {
+  type: 'spring',
+  damping: 25,
+  stiffness: 100,
+};
+
 const SuccessModalComponent = (props: SuccessModalProps) => {
   const {
     Header,
@@ -92,6 +98,7 @@ const SuccessModalComponent = (props: SuccessModalProps) => {
                 animate={isChecked ? 'checked' : 'unchecked'}
                 style={{ opacity }}
                 custom={isChecked}
+                transition={transition}
               />
 
               <motion.path
@@ -103,6 +110,7 @@ const SuccessModalComponent = (props: SuccessModalProps) => {
                 variants={tickVariants}
                 style={{ pathLength, opacity }}
                 custom={isChecked}
+                transition={transition}
               />
             </motion.svg>
           </IconBox>
