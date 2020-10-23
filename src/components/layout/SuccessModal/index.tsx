@@ -1,10 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import {
-  motion,
-  Transition,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion';
+import { motion, useMotionValue, useTransform, Variants } from 'framer-motion';
 import ReactDOM from 'react-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -22,21 +17,23 @@ import {
 interface SuccessModalProps {
   isOpen: boolean;
   onClose(): void;
-
   Header?: ReactNode;
   Buttons?: ReactNode;
   Footer?: ReactNode;
-
   title: string;
   Description: ReactNode;
   goRoute: string;
   textButton: string;
 }
 
-const variants = {
+const variants: Variants = {
   in: {
     y: 0,
-    transition: { type: 'spring', damping: 15, bounce: 0.15 } as Transition,
+    transition: {
+      type: 'spring',
+      damping: 15,
+      bounce: 0.15,
+    },
   },
   out: { y: '100%' },
 };
