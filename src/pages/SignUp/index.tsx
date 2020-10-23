@@ -8,13 +8,7 @@ import {
   FiUser,
 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import {
-  MainLayout,
-  Input,
-  Button,
-  SuccessModal,
-  UnsuccessModal,
-} from '../../components';
+import { MainLayout, Input, Button, UnsuccessModal } from '../../components';
 import { useModal } from '../../utils';
 import { Container, Logo, ButtonsContainer } from './styles';
 
@@ -67,16 +61,16 @@ const SignUp = () => {
       <UnsuccessModal
         isOpen={isOpen}
         onClose={onClose}
-        title="Error"
+        title="Ocorreu um erro"
         Description={
           <>
-            Api nao retornou
+            Houve algum erro interno. Não conseguimos cadastrar sua conta.
             <br />
-            <br />
+            Tente novamente mais tarde.
           </>
         }
         goRoute="/"
-        textButton="Voltar para tentar Novamente"
+        textButton="Voltar para o início"
       />
     </MainLayout>
   );
