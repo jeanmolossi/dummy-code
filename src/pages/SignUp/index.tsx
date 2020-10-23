@@ -8,7 +8,13 @@ import {
   FiUser,
 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { MainLayout, Input, Button, SuccessModal } from '../../components';
+import {
+  MainLayout,
+  Input,
+  Button,
+  SuccessModal,
+  UnsuccessModal,
+} from '../../components';
 import { useModal } from '../../utils';
 import { Container, Logo, ButtonsContainer } from './styles';
 
@@ -58,20 +64,19 @@ const SignUp = () => {
         </Form>
       </Container>
 
-      <SuccessModal
+      <UnsuccessModal
         isOpen={isOpen}
         onClose={onClose}
-        title="Cadastro completo"
+        title="Error"
         Description={
           <>
-            Bem vindo à plataforma. Agora você faz parte da comunidade.
+            Api nao retornou
             <br />
             <br />
-            Você já pode fazer login.
           </>
         }
         goRoute="/"
-        textButton="Voltar e fazer login"
+        textButton="Voltar para tentar Novamente"
       />
     </MainLayout>
   );
