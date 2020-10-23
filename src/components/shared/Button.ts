@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 type Variants = 'red' | 'green' | 'transparent' | 'yellow';
@@ -76,7 +77,7 @@ const buttonTranslucent = {
   `,
 };
 
-export default styled.button<ButtonProps>`
+export default styled(motion.button)<ButtonProps>`
   --box-shadow-color: #000;
   --button-box-shadow: 0 0.2rem 0.4rem var(--box-shadow-color);
 
