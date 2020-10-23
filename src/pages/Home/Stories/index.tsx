@@ -1,32 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import api from '../../../services/api';
 import Storie from './Storie';
 import StorieModal from './StorieModal';
 import { HorizontalScrollView } from './styles';
 
+export interface ApiStoriesResponse {
+  id: string;
+  image: string;
+  user: {
+    id: string;
+    name: string;
+  };
+}
+
 const Stories = () => {
   const { id } = useParams<{ id: string }>();
 
-  const sources = [
-    'http://192.168.0.104:3000/files/image1.jpg',
-    'http://192.168.0.104:3000/files/image2.jpg',
-    'http://192.168.0.104:3000/files/image3.jpg',
-    'http://192.168.0.104:3000/files/image4.jpg',
-    'http://192.168.0.104:3000/files/image1.jpg',
-    'http://192.168.0.104:3000/files/image2.jpg',
-    'http://192.168.0.104:3000/files/image3.jpg',
-    'http://192.168.0.104:3000/files/image4.jpg',
-  ];
+  const [stories, setStories] = useState<ApiStoriesResponse[]>([]);
+
+  useEffect(() => {
+    api.get<ApiStoriesResponse[]>(`/stories`).then(response => {
+      setStories(response.data);
+      console.log(response.data);
+    });
+  }, []);
 
   return (
     <>
       <HorizontalScrollView>
-        {sources.map((source, index) => (
-          <Storie key={index.toString()} index={index} source={source} />
+        {stories.map(storie => (
+          <Storie key={storie.id} {...storie} />
         ))}
       </HorizontalScrollView>
 
-      <StorieModal id={id} sources={sources} />
+      <StorieModal id={id} stories={stories} />
     </>
   );
 };

@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { ApiStoriesResponse } from '../index';
 import { StorieViewModal } from './styles';
 
 interface StorieModalProps {
   id: string;
-  sources: string[];
+  stories: ApiStoriesResponse[];
 }
 
-const StorieModal = ({ id, sources }: StorieModalProps) => {
+const StorieModal = ({ id, stories }: StorieModalProps) => {
+  const [source, setSource] = useState('');
+
+  useEffect(() => {
+    const StorieIndex = stories.findIndex(storie => storie.id === id);
+
+    if (StorieIndex >= 0) {
+      setSource(stories[StorieIndex].image);
+    }
+  }, [id, stories]);
+
   return (
     <AnimatePresence>
       {id && (
@@ -18,7 +29,7 @@ const StorieModal = ({ id, sources }: StorieModalProps) => {
           layoutId={`image-${id}`}
         >
           <Link to="/home" />
-          <img src={sources[Number(id)]} alt=" " />
+          {source && <img src={source} alt="" />}
         </StorieViewModal>
       )}
     </AnimatePresence>

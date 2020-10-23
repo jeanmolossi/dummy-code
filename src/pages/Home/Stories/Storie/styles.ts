@@ -10,6 +10,20 @@ export const StorieContainer = styled(motion.div)`
   border-radius: var(--radii-md);
   overflow: hidden;
 
+  > h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-md);
+    background-image: linear-gradient(
+      0deg,
+      #000000 0%,
+      #1f2e3598 70%,
+      #1f2e3500 100%
+    );
+  }
+
   > a {
     top: 0;
     bottom: 0;
