@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:dev": "react-scripts start",
-    "start:api": "cp ./fakeapi/fakeapi.example.json ./fakeapi/fakeapi.json && json-server --watch ./fakeapi/fakeapi.json --port 3333 --host 192.168.0.104",
+    "start:api": "cp ./fakeapi/fakeapi.example.json ./fakeapi/fakeapi.json && json-server --watch ./fakeapi/fakeapi.json --port 3333",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
