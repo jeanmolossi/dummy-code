@@ -5,9 +5,12 @@ import { RequestAction, SuccessActionPayload } from './types';
 function* ExampleRequest(action: RequestAction) {
   const { payload } = action;
 
+  // eslint-disable-next-line no-console
+  yield call(console.log, 'ok');
+
   const newExamplePayload: SuccessActionPayload = {
     example: {
-      any: '',
+      any: payload,
     },
   };
 
