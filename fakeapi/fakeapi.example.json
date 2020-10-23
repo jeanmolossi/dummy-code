@@ -23,7 +23,7 @@
   "stories": [
     {
       "id": "1",
-      "image": "http://localhost:3000/files/image1.jpg",
+      "image": "http://192.168.0.104:3000/files/image1.jpg",
       "user": {
         "id": "1",
         "name":"John Doe"
@@ -31,7 +31,7 @@
     },
     {
       "id": "2",
-      "image": "http://localhost:3000/files/image2.jpg",
+      "image": "http://192.168.0.104:3000/files/image2.jpg",
       "user": {
         "id": "1",
         "name":"John Doe"
@@ -39,7 +39,7 @@
     },
     {
       "id": "3",
-      "image": "http://localhost:3000/files/image3.jpg",
+      "image": "http://192.168.0.104:3000/files/image3.jpg",
       "user": {
         "id": "1",
         "name":"John Doe"
@@ -47,7 +47,7 @@
     },
     {
       "id": "4",
-      "image": "http://localhost:3000/files/image4.jpg",
+      "image": "http://192.168.0.104:3000/files/image4.jpg",
       "user": {
         "id": "1",
         "name":"John Doe"
@@ -55,7 +55,7 @@
     },
     {
       "id": "5",
-      "image": "http://localhost:3000/files/image5.jpg",
+      "image": "http://192.168.0.104:3000/files/image5.jpg",
       "user": {
         "id": "1",
         "name":"John Doe"
@@ -63,7 +63,7 @@
     },
     {
       "id": "6",
-      "image": "http://localhost:3000/files/image6.jpg",
+      "image": "http://192.168.0.104:3000/files/image6.jpg",
       "user": {
         "id": "1",
         "name":"John Doe"
@@ -71,7 +71,7 @@
     },
     {
       "id": "7",
-      "image": "http://localhost:3000/files/image7.jpg",
+      "image": "http://192.168.0.104:3000/files/image7.jpg",
       "user": {
         "id": "1",
         "name":"John Doe"
@@ -94,9 +94,9 @@
         "id": "1",
         "text": "Adorei a ideia e resolvi fazer meu proprio cenario. Deu um trabalhao, mas vejam... ",
         "images": [
-          "http://localhost:3000/files/image5.jpg",
-          "http://localhost:3000/files/image6.jpg",
-          "http://localhost:3000/files/image7.jpg"
+          "http://192.168.0.104:3000/files/image5.jpg",
+          "http://192.168.0.104:3000/files/image6.jpg",
+          "http://192.168.0.104:3000/files/image7.jpg"
         ]
       },
       "comments": 7,
