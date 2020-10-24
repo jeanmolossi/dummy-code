@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { ApiStoriesResponse } from '../index';
 import { StorieViewModal } from './styles';
@@ -9,7 +10,7 @@ interface StorieModalProps {
   stories: ApiStoriesResponse[];
 }
 
-const StorieModal = ({ id, stories }: StorieModalProps) => {
+const StorieModalComponent = ({ id, stories }: StorieModalProps) => {
   const [source, setSource] = useState('');
 
   useEffect(() => {
@@ -34,6 +35,12 @@ const StorieModal = ({ id, stories }: StorieModalProps) => {
       )}
     </AnimatePresence>
   );
+};
+
+const StorieModal = (props: StorieModalProps) => {
+  const container =
+    document.getElementById('root') ?? document.createElement('div');
+  return ReactDOM.createPortal(<StorieModalComponent {...props} />, container);
 };
 
 export default StorieModal;

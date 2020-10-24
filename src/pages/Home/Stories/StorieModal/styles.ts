@@ -2,11 +2,12 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const StorieViewModal = styled(motion.div)`
-  position: fixed;
+  position: fixed !important;
   width: 100vw;
   height: 100vh;
+  top: 0;
   background: #3ff;
-  z-index: 3;
+  z-index: 9999;
 
   > h3 {
     position: absolute;
