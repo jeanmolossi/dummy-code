@@ -41,7 +41,7 @@ export const Container = styled(motion.div)`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding-bottom: 9.6rem;
+  padding-bottom: -9.6rem;
 `;
 
 export const DrawerMenu = styled(motion.div)`
