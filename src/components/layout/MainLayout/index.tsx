@@ -50,6 +50,7 @@ const MainLayout = ({ children, showBottomTabs = true }: MainLayoutProps) => {
 
   return (
     <AnimationContainer
+      initial={false}
       animate={translated ? 'opened' : 'closed'}
       variants={animationContainerVariants}
     >
