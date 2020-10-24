@@ -8,7 +8,7 @@ export const Container = styled.div`
   right: 0;
   background-color: var(--grey-300);
   padding: var(--padding-md);
-  z-index: 2;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
