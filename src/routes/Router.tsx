@@ -7,6 +7,7 @@ import {
   Lessons,
   SignIn,
   SignUp,
+  Notifications,
 } from '../pages';
 
 const Router = () => {
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/home" component={Home} />
         <Route path="/profile" component={Profile} />
         <Route path="/favorites" component={Home} />
+        <Route path="/notifications" component={Notifications} />
         <Route path="/lessons" component={Lessons} />
         <Route path="/chat" component={Home} />
       </Switch>
