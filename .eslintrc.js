@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'camelcase': 'off',
+    'jsx-a11y/media-has-caption': 'off',
 
     'react/prop-types': 'off',
     'react/require-default-props': 'off',

@@ -39,8 +39,12 @@ const Notifications = () => {
         </Header>
 
         <NotificationsList>
-          {notifications.map(notification => (
-            <Notification key={notification.id} {...notification} />
+          {notifications.map((notification, index) => (
+            <Notification
+              key={notification.id}
+              index={index}
+              {...notification}
+            />
           ))}
         </NotificationsList>
       </Container>
