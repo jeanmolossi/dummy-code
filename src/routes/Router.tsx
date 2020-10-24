@@ -8,6 +8,7 @@ import {
   SignIn,
   SignUp,
   Notifications,
+  Module,
 } from '../pages';
 
 const Router = () => {
@@ -24,6 +25,7 @@ const Router = () => {
         <Route path="/notifications" component={Notifications} />
         <Route path="/lessons" component={Lessons} />
         <Route path="/chat" component={Home} />
+        <Route path={['/module', '/module/:id']} component={Module} />
       </Switch>
     </BrowserRouter>
   );
