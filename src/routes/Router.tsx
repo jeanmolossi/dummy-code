@@ -11,6 +11,10 @@ const Router = () => {
         <Route path="/forgot-password" component={ForgotPassword} />
 
         <Route path="/home" component={Home} />
+        <Route path="/profile" component={Home} />
+        <Route path="/favorites" component={Home} />
+        <Route path="/lessons" component={Home} />
+        <Route path="/chat" component={Home} />
       </Switch>
     </BrowserRouter>
   );
