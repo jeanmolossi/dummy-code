@@ -1,6 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ForgotPassword, Home, Profile, SignIn, SignUp } from '../pages';
+import {
+  ForgotPassword,
+  Home,
+  Profile,
+  Lessons,
+  SignIn,
+  SignUp,
+} from '../pages';
 
 const Router = () => {
   return (
@@ -13,7 +20,7 @@ const Router = () => {
         <Route path="/home" component={Home} />
         <Route path="/profile" component={Profile} />
         <Route path="/favorites" component={Home} />
-        <Route path="/lessons" component={Home} />
+        <Route path="/lessons" component={Lessons} />
         <Route path="/chat" component={Home} />
       </Switch>
     </BrowserRouter>
