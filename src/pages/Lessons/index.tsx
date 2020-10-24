@@ -55,6 +55,7 @@ const Lessons = () => {
               Context API <br /> Rotas & Autenticação{' '}
             </strong>
           </ContainerToVideo>
+
           <ContainerIcons>
             <Icon>
               <FiEye />
@@ -66,6 +67,7 @@ const Lessons = () => {
             </Icon>
           </ContainerIcons>
         </ContainerImageCourse>
+
         <InputSearch>
           <FiSearch />
           <input placeholder="Busque o conteudo" />
