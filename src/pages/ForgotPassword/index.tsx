@@ -2,17 +2,24 @@ import React, { useCallback } from 'react';
 import { Form } from '@unform/web';
 import { FiArrowLeft, FiArrowRight, FiMail } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { MainLayout, Input, Button } from '../../components';
+import { MainLayout, Input, Button, SuccessModal } from '../../components';
+import { useModal } from '../../utils';
 import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignUp = () => {
-  const handleSubmit = useCallback(data => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  }, []);
+  const { isOpen, onClose, onOpen } = useModal();
+
+  const handleSubmit = useCallback(
+    data => {
+      // eslint-disable-next-line no-console
+      console.log(data);
+      onOpen();
+    },
+    [onOpen],
+  );
 
   return (
-    <MainLayout>
+    <MainLayout showBottomTabs={false}>
       <Container>
         <Logo />
 
@@ -42,6 +49,21 @@ const SignUp = () => {
           </ButtonsContainer>
         </Form>
       </Container>
+
+      <SuccessModal
+        {...{ isOpen, onClose }}
+        title="Recuperação enviada!"
+        Description={
+          <>
+            Verifique seu e-mail que enviamos para você as instruções.
+            <br />
+            <br />
+            Após completar os passos você já pode fazer o login
+          </>
+        }
+        goRoute="/"
+        textButton="Voltar para login"
+      />
     </MainLayout>
   );
 };
