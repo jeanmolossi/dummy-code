@@ -46,6 +46,20 @@ export default createGlobalStyle`
     --padding-xxl: 4.0rem;
     --padding-xl1: 4.8rem;
 
+    --size-xs: 0.4rem;
+    --size-sm: 0.8rem;
+    --size-md: 1.6rem;
+    --size-lg: 2.4rem;
+    --size-xl: 3.2rem;
+    --size-xxl: 4.0rem;
+    --size-xl1: 4.8rem;
+    --size-xl2: 5.6rem;
+    --size-xl3: 6.4rem;
+    --size-xl4: 7.2rem;
+    --size-xl5: 8.0rem;
+    --size-xl6: 9.6rem;
+    --size-xl7: 12.6rem;
+
     --radii-xs: 0.4rem;
     --radii-sm: 0.8rem;
     --radii-md: 1.6rem;
