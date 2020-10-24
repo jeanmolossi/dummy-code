@@ -4,13 +4,14 @@ import { Container } from './styles';
 
 interface MainLayoutProps {
   children?: ReactNode;
+  showBottomTabs?: boolean;
 }
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = ({ children, showBottomTabs = true }: MainLayoutProps) => {
   return (
     <Container id="main-layout">
       {children}
-      <BottomTabs />
+      {showBottomTabs && <BottomTabs />}
     </Container>
   );
 };

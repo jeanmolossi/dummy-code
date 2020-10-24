@@ -7,6 +7,7 @@ import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignIn = () => {
   const history = useHistory();
+
   const handleSubmit = useCallback(
     data => {
       // eslint-disable-next-line no-console
@@ -17,7 +18,7 @@ const SignIn = () => {
   );
 
   return (
-    <MainLayout>
+    <MainLayout showBottomTabs={false}>
       <Container>
         <Logo />
 

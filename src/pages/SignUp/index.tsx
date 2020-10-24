@@ -26,7 +26,7 @@ const SignUp = () => {
   );
 
   return (
-    <MainLayout>
+    <MainLayout showBottomTabs={false}>
       <Container>
         <Logo />
 
