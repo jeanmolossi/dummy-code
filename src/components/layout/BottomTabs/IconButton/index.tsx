@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import React from 'react';
+import { Variants } from 'framer-motion';
 import { IconType } from 'react-icons';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Container } from './styles';
 
 interface IconButtonProps {
