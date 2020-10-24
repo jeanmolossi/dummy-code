@@ -1,14 +1,44 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Button as BtnComponent } from '../../components';
 
 interface ImageProps {
   img: string;
 }
+export type Variants = 'red' | 'green' | 'transparent' | 'blue' | 'yellow';
+
+interface CardProps {
+  variant?: Variants;
+}
+
+const cardVariants = {
+  red: css`
+    background-color: var(--red-100);
+    --box-shadow-color: var(--red-300);
+  `,
+  green: css`
+    background-color: var(--green-100);
+    --box-shadow-color: var(--green-300);
+  `,
+  transparent: css`
+    background-color: transparent;
+    box-shadow: none;
+  `,
+  yellow: css`
+    background-color: var(--yellow-100);
+    --box-shadow-color: var(--yellow-300);
+    color: #fff;
+  `,
+  blue: css`
+    background-color: var(--blue-100);
+    --box-shadow-color: var(--blue-300);
+    color: #fff;
+  `,
+};
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  flex: 1;
   padding: var(--padding-xl);
   background-image: var(--dark-100);
 `;
@@ -17,14 +47,14 @@ export const ContainerImageCourse = styled.div<ImageProps>`
   display: flex;
   flex-direction: column;
   padding: var(--padding-sm);
-  height: 200px;
+  height: 20rem;
   background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.4) 100%
     ),
   url(${props => props.img})  no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   border-radius: var(--spacing-md);
   }
 `;
@@ -40,7 +70,7 @@ export const ContainerToVideo = styled.div`
     content: '';
     opacity: 0.4;
     width: 100%;
-    height: 1.8px;
+    height: 0.18rem;
     margin-top: var(--spacing-md);
     background: var(--grey-100);
   }
@@ -95,30 +125,33 @@ export const TextInfoModulos = styled.h1`
 
 export const ModulosWrapper = styled.div`
   display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   > div {
-    margin-right: 12px;
+    margin-right: var(--spacing-md);
   }
 `;
 
-export const Modulos = styled.div`
+export const CardLesson = styled.div<CardProps>`
   margin-top: var(--radii-xl);
-`;
-
-export const CardLesson = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  flex-shrink: 0;
   padding: var(--padding-md);
   border-radius: var(--radii-lg);
-  background-color: var(--green-200);
-  width: 150px;
-  height: 210px;
+  ${({ variant }) => cardVariants[variant || 'green']};
+  width: 15rem;
+  height: 21rem;
 `;
 
 export const ButtonLesson = styled(Button)`
   border: 0;
   background: white;
-  border-radius: 50%;
+  border-radius: var(--radii-full);
 `;
 export const HeaderCard = styled.div`
   display: flex;

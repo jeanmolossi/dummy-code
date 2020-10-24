@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FiEye,
   FiMessageCircle,
   FiSearch,
   FiPlay,
-  FiServer,
+  FiVideo,
 } from 'react-icons/fi';
 import { MainLayout } from '../../components';
+import api from '../../services/api';
 import {
   Container,
   ContainerImageCourse,
@@ -15,7 +16,6 @@ import {
   ContainerIcons,
   Button,
   InputSearch,
-  Modulos,
   CardLesson,
   HeaderCard,
   ContentCard,
@@ -23,9 +23,26 @@ import {
   ButtonLesson,
   ModulosWrapper,
   TextInfoModulos,
+  Variants,
 } from './styles';
 
-const Lessons: React.FC = () => {
+interface ApiModulesResponse {
+  id: number;
+  class: string;
+  typeConcepts: string;
+  totalClass: number;
+  colorCard: Variants;
+}
+
+const Lessons = () => {
+  const [modules, setModules] = useState<ApiModulesResponse[]>([]);
+
+  useEffect(() => {
+    api.get<ApiModulesResponse[]>(`/modules`).then(response => {
+      setModules(response.data);
+    });
+  }, []);
+
   return (
     <MainLayout>
       <Container>
@@ -53,45 +70,34 @@ const Lessons: React.FC = () => {
           <FiSearch />
           <input placeholder="Busque o conteudo" />
         </InputSearch>
+
         <TextInfoModulos>Modulos</TextInfoModulos>
 
         <ModulosWrapper>
-          <Modulos>
-            <CardLesson>
+          {modules.map(module => (
+            <CardLesson key={module.id} variant={module.colorCard}>
               <HeaderCard>
-                <FiServer />
-                <h3>NodeJS</h3>
+                <FiVideo />
+                <h3>{module.class}</h3>
               </HeaderCard>
               <ContentCard>
-                <p>Backend</p>
-                <h5>7 aulas</h5>
+                <p>{module.typeConcepts}</p>
+                <h5>{module.totalClass} aulas</h5>
               </ContentCard>
               <PlayerCard>
                 <ButtonLesson variant="transparent">
-                  <FiPlay color="#3DD598" />
+                  <FiPlay
+                    color={
+                      module.colorCard !== 'yellow'
+                        ? module.colorCard
+                        : '#625B39'
+                    }
+                  />
                 </ButtonLesson>
                 <p>Abrir</p>
               </PlayerCard>
             </CardLesson>
-          </Modulos>
-          <Modulos>
-            <CardLesson>
-              <HeaderCard>
-                <FiServer />
-                <h3>NodeJS</h3>
-              </HeaderCard>
-              <ContentCard>
-                <p>Backend</p>
-                <h5>7 aulas</h5>
-              </ContentCard>
-              <PlayerCard>
-                <ButtonLesson variant="transparent">
-                  <FiPlay color="#3DD598" />
-                </ButtonLesson>
-                <p>Abrir</p>
-              </PlayerCard>
-            </CardLesson>
-          </Modulos>
+          ))}
         </ModulosWrapper>
       </Container>
     </MainLayout>
