@@ -6,6 +6,7 @@ import {
   FiPlay,
   FiVideo,
 } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { MainLayout } from '../../components';
 import api from '../../services/api';
 import {
@@ -87,7 +88,7 @@ const Lessons = () => {
                 <h5>{module.totalClass} aulas</h5>
               </ContentCard>
               <PlayerCard>
-                <ButtonLesson variant="transparent">
+                <ButtonLesson as={Link} to="/module/1" variant="transparent">
                   <FiPlay
                     color={
                       module.colorCard !== 'yellow'
