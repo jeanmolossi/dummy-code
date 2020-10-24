@@ -27,7 +27,7 @@ const BottomTabsComponent = ({ toggleDrawer }: BottomTabsProps) => {
         />
         <IconButton to="/favorites" icon={FiHeart} />
         <IconButton to="/home" icon={FiHome} />
-        <IconButton to="/lessons" icon={FiVideo} />
+        <IconButton to="/modules" icon={FiVideo} />
         <IconButton to="/chat" icon={FiMessageSquare} />
       </Container>
     </AnimateSharedLayout>

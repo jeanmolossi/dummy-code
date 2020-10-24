@@ -4,11 +4,12 @@ import {
   ForgotPassword,
   Home,
   Profile,
-  Lessons,
+  Modules,
   SignIn,
   SignUp,
   Notifications,
   Module,
+  Lesson,
 } from '../pages';
 
 const Router = () => {
@@ -23,9 +24,10 @@ const Router = () => {
         <Route path="/profile" component={Profile} />
         <Route path="/favorites" component={Home} />
         <Route path="/notifications" component={Notifications} />
-        <Route path="/lessons" component={Lessons} />
+        <Route path="/modules" component={Modules} />
         <Route path="/chat" component={Home} />
         <Route path={['/module', '/module/:id']} component={Module} />
+        <Route path={['/lesson', '/lesson/:id']} component={Lesson} />
       </Switch>
     </BrowserRouter>
   );

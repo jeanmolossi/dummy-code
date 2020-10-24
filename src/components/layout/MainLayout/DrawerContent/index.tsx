@@ -38,7 +38,7 @@ const DrawerContent = ({ opened }: DrawerContentProps) => {
         <FiBell /> Notificações
       </MenuItem>
 
-      <MenuItem to="/lessons">
+      <MenuItem to="/modules">
         <FiVideo /> Aulas
       </MenuItem>
 
