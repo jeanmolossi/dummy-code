@@ -99,7 +99,7 @@ export default createGlobalStyle`
   }
 
   input, button {
-    font: 400 14px 'Ubuntu', Arial, Helvetica, sans-serif;
+    font: 400 1.6rem 'Ubuntu', Arial, Helvetica, sans-serif;
     outline: none;
   }
 
