@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-import { exampleReducer } from './example';
-import { RootState } from './rootTypes';
+import { appReducer as app } from './app';
+import { userReducer as user } from './user';
 
-export default combineReducers<RootState>({
-  example: exampleReducer,
+export default combineReducers({
+  app,
+  user,
 });

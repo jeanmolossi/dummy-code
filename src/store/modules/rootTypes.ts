@@ -1,10 +1,8 @@
-import { ExampleState } from './example/types';
+import rootReducer from './rootReducer';
 
 export type ActionReturnType<A = string, T = any> = {
   type: A;
   payload: T;
 };
 
-export interface RootState {
-  example: ExampleState;
-}
+export type RootState = ReturnType<typeof rootReducer>;

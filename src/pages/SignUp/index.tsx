@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Form } from '@unform/web';
 import {
   FiArrowLeft,
@@ -7,23 +7,76 @@ import {
   FiMail,
   FiUser,
 } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MainLayout, Input, Button, UnsuccessModal } from '../../components';
+import {
+  MainLayout,
+  Input,
+  Button,
+  UnsuccessModal,
+  SuccessModal,
+} from '../../components';
+import { RequestStatusEnum } from '../../store/modules/app/actions';
+import { RootState } from '../../store/modules/rootTypes';
+import { CreateAccountWithEmailAndPassword } from '../../store/modules/user/actions';
 import { useModal } from '../../utils';
 import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignUp = () => {
-  const { isOpen, onClose, onOpen } = useModal();
+  const {
+    isOpen: isOpenResolve,
+    onClose: onCloseResolve,
+    onOpen: onOpenResolve,
+  } = useModal();
+  const {
+    isOpen: isOpenReject,
+    onClose: onCloseReject,
+    onOpen: onOpenReject,
+  } = useModal();
+  const {
+    isOpen: isOpenPending,
+    onClose: onClosePending,
+    onOpen: onOpenPending,
+  } = useModal();
+
+  const dispatch = useDispatch();
+  const { app } = useSelector((state: RootState) => ({ app: state.app }));
 
   const handleSubmit = useCallback(
     data => {
       // eslint-disable-next-line no-console
-      console.log(data);
-
-      onOpen();
+      dispatch(CreateAccountWithEmailAndPassword(data));
     },
-    [onOpen],
+    [dispatch],
   );
+
+  useEffect(() => {
+    if (app.requestStatus === RequestStatusEnum.PENDING) {
+      onOpenPending();
+    }
+    if (app.requestStatus === RequestStatusEnum.RESOLVE) {
+      onClosePending();
+      onOpenResolve();
+    }
+    if (app.requestStatus === RequestStatusEnum.REJECT) {
+      onClosePending();
+      onOpenReject();
+    }
+
+    return () => {
+      onClosePending();
+      onCloseReject();
+      onCloseResolve();
+    };
+  }, [
+    onOpenReject,
+    onCloseReject,
+    onOpenPending,
+    onClosePending,
+    onOpenResolve,
+    onCloseResolve,
+    app,
+  ]);
 
   return (
     <MainLayout showBottomTabs={false}>
@@ -34,8 +87,6 @@ const SignUp = () => {
         <h2>Vamos começar</h2>
 
         <Form onSubmit={handleSubmit}>
-          <Input icon={FiUser} name="username" placeholder="Nick name" />
-
           <Input icon={FiMail} name="email" placeholder="Seu melhor e-mail" />
 
           <Input
@@ -58,9 +109,27 @@ const SignUp = () => {
         </Form>
       </Container>
 
+      <SuccessModal
+        isOpen={isOpenPending}
+        onClose={onClosePending}
+        title="Cadastrando..."
+        Description={<>Aguarde enquanto registramos sua conta...</>}
+        goRoute="/signup"
+        textButton="Aguarde..."
+      />
+
+      <SuccessModal
+        isOpen={isOpenResolve}
+        onClose={onCloseResolve}
+        title="Cadastrado"
+        Description={<>Sua conta foi registrada com sucesso!</>}
+        goRoute="/"
+        textButton="Voltar para o login"
+      />
+
       <UnsuccessModal
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={isOpenReject}
+        onClose={onCloseReject}
         title="Ocorreu um erro"
         Description={
           <>

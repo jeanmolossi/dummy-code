@@ -4,6 +4,8 @@ import { GlobalStyle } from './assets/styles';
 import { Router } from './routes';
 import store from './store';
 
+import './repositories';
+
 const App = () => {
   return (
     <Provider store={store}>
