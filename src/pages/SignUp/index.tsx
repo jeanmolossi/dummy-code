@@ -97,7 +97,7 @@ const SignUp = () => {
           />
 
           <ButtonsContainer>
-            <Button as={Link} to="/" variant="red" translucent>
+            <Button as={Link} to="/" variant="red" $translucent>
               <FiArrowLeft />
             </Button>
 

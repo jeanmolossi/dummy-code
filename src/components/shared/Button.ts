@@ -6,7 +6,7 @@ type Variants = 'red' | 'green' | 'transparent' | 'yellow';
 interface ButtonProps {
   variant?: Variants;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  translucent?: boolean;
+  $translucent?: boolean;
 }
 
 const buttonVariants = {
@@ -93,6 +93,6 @@ export default styled(motion.button)<ButtonProps>`
 
   ${({ variant }) => buttonVariants[variant || 'green']};
   ${({ size }) => buttonSizes[size || 'md']};
-  ${({ translucent, variant }) =>
-    translucent && buttonTranslucent[variant || 'green']}
+  ${({ $translucent, variant }) =>
+    $translucent && buttonTranslucent[variant || 'green']}
 `;

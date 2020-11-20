@@ -45,7 +45,7 @@ const SignIn = () => {
               Esqueceu sua senha?
             </Button>
 
-            <Button as={Link} to="/signup" variant="yellow" translucent>
+            <Button as={Link} to="/signup" variant="yellow" $translucent>
               Criar conta
             </Button>
           </ButtonsContainer>
