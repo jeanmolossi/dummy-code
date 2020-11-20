@@ -28,6 +28,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'camelcase': 'off',
     'jsx-a11y/media-has-caption': 'off',
+    'no-param-reassign': ['error', { "props": true, "ignorePropertyModificationsFor": ["draft"] }],
 
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
