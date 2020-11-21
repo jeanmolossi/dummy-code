@@ -88,7 +88,7 @@ const Lessons = () => {
                 <h5>{module.totalClass} aulas</h5>
               </ContentCard>
               <PlayerCard>
-                <ButtonLesson as={Link} to="/module/1" variant="transparent">
+                <ButtonLesson as={Link} to={`/module/${module.id}`} variant="transparent">
                   <FiPlay
                     color={
                       module.colorCard !== 'yellow'
