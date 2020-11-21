@@ -1,87 +1,96 @@
-import React from 'react';
-import { FiSearch, FiEye, FiMessageCircle } from 'react-icons/fi';
+import { MotionValue, useElementScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { FiSearch, FiMessageCircle } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
 import { MainLayout } from '../../../components';
+import api from '../../../services/api';
 import {
   Container,
   InputSearch,
-  ModulosImages,
-  ModulosWrapper,
+  ModuleImage,
+  ModuleWrapper,
   ModuloInfo,
-  ViewAndMessages,
+  Messages,
   CardModules,
+  HeaderTitleAndInput
 } from './styles';
 
+interface ApiModuleResponse {
+  module: Array<{
+    id: string;
+    name: string;
+    img: string;
+    messages: number;
+  }>;
+}
+
+
 const Module: React.FC = () => {
+
+  const { moduleId } = useParams<{ moduleId: string }>();
+
+  const moduleElementRef = useRef<HTMLDivElement>(null);
+
+  const [module, setModule] = useState<ApiModuleResponse['module']>([]);
+  useEffect(() => {
+    api.get<ApiModuleResponse>(`/modules/${moduleId}`).then(response => {
+      setModule(response.data.module);
+    })
+
+  }, [])
+
+  const { scrollXProgress } = useElementScroll(moduleElementRef);
+  const currentIndex = useTransform(scrollXProgress, [0, 1], [0, module.length - 1])
+
+
+
   return (
     <MainLayout>
       <Container>
-        <InputSearch>
-          <FiSearch />
-          <input placeholder="Busque o conteudo" />
-        </InputSearch>
-        <h1>ReactJS</h1>
-        <ModulosWrapper>
-          <CardModules initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <ModulosImages img="http://localhost:3000/files/image5.jpg">
-              <ViewAndMessages>
-                <div>
-                  <FiEye />
-                  <p>297</p>
-                </div>
-                <div>
-                  <FiMessageCircle />
-                  <p>Messages</p>
-                </div>
-              </ViewAndMessages>
+        <HeaderTitleAndInput>
+          <InputSearch>
+            <FiSearch />
+            <input placeholder="Busque o conteúdo" />
+          </InputSearch>
+          <h1>ReactJS</h1>
+        </HeaderTitleAndInput>
+        <ModuleWrapper ref={moduleElementRef} >
+          {module.map((mod, index) => (
+            <CardModule key={index} {...{ mod, index, currentIndex }} />
+          ))}
 
-              <ModuloInfo>
-                <p>Context API</p>
-                <p>Rotas & Autenticação</p>
-              </ModuloInfo>
-            </ModulosImages>
-          </CardModules>
-          <CardModules initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <ModulosImages img="http://localhost:3000/files/image5.jpg">
-              <ViewAndMessages>
-                <div>
-                  <FiEye />
-                  <p>297</p>
-                </div>
-                <div>
-                  <FiMessageCircle />
-                  <p>Messages</p>
-                </div>
-              </ViewAndMessages>
-
-              <ModuloInfo>
-                <p>Context API</p>
-                <p>Rotas & Autenticação</p>
-              </ModuloInfo>
-            </ModulosImages>
-          </CardModules>
-          <CardModules initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <ModulosImages img="http://localhost:3000/files/image5.jpg">
-              <ViewAndMessages>
-                <div>
-                  <FiEye />
-                  <p>297</p>
-                </div>
-                <div>
-                  <FiMessageCircle />
-                  <p>Messages</p>
-                </div>
-              </ViewAndMessages>
-
-              <ModuloInfo>
-                <p>Context API</p>
-                <p>Rotas & Autenticação</p>
-              </ModuloInfo>
-            </ModulosImages>
-          </CardModules>
-        </ModulosWrapper>
+        </ModuleWrapper>
       </Container>
     </MainLayout>
   );
 };
 
+
+interface CardModuleProp {
+  mod: ApiModuleResponse['module'][0];
+  currentIndex: MotionValue<number>;
+  index: number;
+}
+
+const CardModule = ({ mod, currentIndex, index }: CardModuleProp) => {
+  const scale = useTransform(currentIndex, [index - 1, index, index + 1], [0.7, 1.0, 0.7], { clamp: true })
+  return (
+    <CardModules style={{ scale }} key={mod.id}>
+      <ModuleImage img={mod.img}>
+        <Messages>
+          <FiMessageCircle />
+          <p>{mod.messages}</p>
+        </Messages>
+        <ModuloInfo>
+          <p>{mod.name}</p>
+        </ModuloInfo>
+      </ModuleImage>
+    </CardModules>
+  );
+}
+
+
+
 export default Module;
+
+

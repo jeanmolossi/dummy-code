@@ -9,7 +9,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: var(--padding-xl);
   background-image: var(--dark-100);
 
   > h1 {
@@ -19,6 +18,7 @@ export const Container = styled.div`
 `;
 
 export const InputSearch = styled.div`
+ 
   border: 0;
   height: var(--radii-xl1);
   margin-top: var(--radii-lg);
@@ -41,13 +41,15 @@ export const InputSearch = styled.div`
   }
 `;
 
-export const ModulosWrapper = styled.div`
+export const HeaderTitleAndInput = styled.div`
+  padding:var(--padding-md);
+`;
+export const ModuleWrapper = styled.div`
   display: flex;
   flex-shrink: 0;
   overflow-x: auto;
   scroll-behavior: smooth;
-  column-gap: 1.6rem;
-  padding: var(--padding-xs) 0;
+  
 
   ::-webkit-scrollbar {
     width: 0.5rem;
@@ -60,11 +62,14 @@ export const ModulosWrapper = styled.div`
   }
 `;
 export const CardModules = styled(motion.div)`
-  margin-top: var(--spacing-xl1);
   display: flex;
   flex-wrap: nowrap;
+  &:last-child {
+    margin-right: var(--spacing-xl1);
+  }
+
 `;
-export const ModulosImages = styled.div<ImageProps>`
+export const ModuleImage = styled.div<ImageProps>`
   margin-top: var(--spacing-xl1);
   display: flex;
   flex-direction: column;
@@ -86,14 +91,12 @@ export const ModulosImages = styled.div<ImageProps>`
  
 `;
 
-export const ViewAndMessages = styled.div`
-  div {
+export const Messages = styled.div`
     display: flex;
     > p {
       font-weight: bold;
       margin-left: var(--spacing-sm);
     }
-  }
 `;
 export const ModuloInfo = styled.div`
   p {
