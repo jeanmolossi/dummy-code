@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { Variants } from 'framer-motion';
 import {
   FiBell,
@@ -20,6 +22,10 @@ const variants: Variants = {
 };
 
 const DrawerContent = ({ opened }: DrawerContentProps) => {
+  const signOut = useCallback(() => {
+    firebase.auth().signOut();
+  }, []);
+
   return (
     <Container variants={variants} animate={opened ? 'opened' : 'closed'}>
       <MenuItem to="/home">
@@ -42,7 +48,7 @@ const DrawerContent = ({ opened }: DrawerContentProps) => {
         <FiVideo /> Aulas
       </MenuItem>
 
-      <MenuItem to="/">
+      <MenuItem to="/" onClick={signOut}>
         <FiLogOut /> Sair
       </MenuItem>
     </Container>
