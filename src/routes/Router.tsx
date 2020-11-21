@@ -26,7 +26,7 @@ const Router = () => {
         <Route path="/notifications" component={Notifications} />
         <Route path="/modules" component={Modules} />
         <Route path="/chat" component={Home} />
-        <Route path={['/module', '/module/:id']} component={Module} />
+        <Route path={['/module/:moduleId', '/module']} component={Module} />
         <Route path={['/lesson', '/lesson/:id']} component={Lesson} />
       </Switch>
     </BrowserRouter>
