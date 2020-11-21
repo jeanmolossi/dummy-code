@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { stat } from 'fs';
 import { all, put, takeLatest } from 'redux-saga/effects';
 import { RequestStatusEnum, UpdateRequestStatus } from '../app/actions';
 import { CreateAccountWithEmailAndPasswordAction } from './types';
