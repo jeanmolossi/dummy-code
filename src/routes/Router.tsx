@@ -10,6 +10,7 @@ import {
   Notifications,
   Module,
   Lesson,
+  ConfirmAccount,
 } from '../pages';
 
 const Router = () => {
@@ -19,6 +20,7 @@ const Router = () => {
         <Route path="/" exact component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/confirm-account" component={ConfirmAccount} />
 
         <Route path="/home" component={Home} />
         <Route path="/profile" component={Profile} />
@@ -26,8 +28,9 @@ const Router = () => {
         <Route path="/notifications" component={Notifications} />
         <Route path="/modules" component={Modules} />
         <Route path="/chat" component={Home} />
+
         <Route path={['/module/:moduleId', '/module']} component={Module} />
-        <Route path={['/lesson', '/lesson/:id']} component={Lesson} />
+        <Route path={['/lesson/:id', '/lesson']} component={Lesson} />
       </Switch>
     </BrowserRouter>
   );
