@@ -1,14 +1,22 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Form } from '@unform/web';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { FiArrowLeft, FiArrowRight, FiLock, FiMail } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import { MainLayout, Input, Button } from '../../components';
+import { RootState } from '../../store/modules/rootTypes';
 import { CreateAccountWithEmailAndPassword } from '../../store/modules/user/actions';
 import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignUp = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { requestStatus } = useSelector((state: RootState) => ({
+    requestStatus: state.app.requestStatus,
+  }));
 
   const handleSubmit = useCallback(
     data => {
@@ -16,6 +24,20 @@ const SignUp = () => {
     },
     [dispatch],
   );
+
+  useEffect(() => {
+    const subscribe = firebase.auth().onAuthStateChanged(user => {
+      if (user && user.emailVerified) {
+        history.push('/home');
+      } else if (user && !user.emailVerified) {
+        if (requestStatus === null) history.push('/confirm-account');
+      }
+    });
+
+    return () => {
+      subscribe();
+    };
+  }, [history, requestStatus]);
 
   return (
     <MainLayout showBottomTabs={false}>
