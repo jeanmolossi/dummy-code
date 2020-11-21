@@ -7,10 +7,14 @@ export const RequestStatusEnum = {
 } as const;
 
 export function UpdateRequestStatus(
-  payload: UpdateRequestStatusPayload,
+  status: UpdateRequestStatusPayload['status'],
+  message: UpdateRequestStatusPayload['message'] = null,
 ): UpdateRequestStatusAction {
   return {
     type: '@app/UPDATE_REQUEST_STATUS',
-    payload,
+    payload: {
+      status,
+      message,
+    },
   };
 }

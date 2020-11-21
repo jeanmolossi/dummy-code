@@ -73,10 +73,13 @@ const RequestsModalComponent = ({ app }: RequestModalProps) => {
   }, [app.requestStatus]);
 
   const { title, Description } = useMemo(() => {
+    const { requestMessage } = app;
+
     if (app.requestStatus === 'PENDING') {
       return {
         title: 'Carregando...',
-        Description: 'Aguarde, estamos processando sua solicitação',
+        Description:
+          requestMessage || 'Aguarde, estamos processando sua solicitação',
       };
     }
 
@@ -84,15 +87,16 @@ const RequestsModalComponent = ({ app }: RequestModalProps) => {
       return {
         title: 'Não deu :(',
         Description:
+          requestMessage ||
           'Desculpe, ocorreu um erro e não conseguimos resolver sua solicitação.',
       };
     }
 
     return {
       title: 'Resolvido! =)',
-      Description: 'Prontinho! Deu tudo certo.',
+      Description: requestMessage || 'Prontinho! Deu tudo certo.',
     };
-  }, [app.requestStatus]);
+  }, [app]);
 
   const handleCloseModal = useCallback(() => {
     dispatch(UpdateRequestStatus(null));
