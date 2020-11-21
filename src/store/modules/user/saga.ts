@@ -16,7 +16,7 @@ function* CreateAccountWithEmailAndPassword({
 }: CreateAccountWithEmailAndPasswordAction) {
   const { email, password } = payload;
 
-  yield put(UpdateRequestStatus(RequestStatusEnum.PENDING));
+  yield put(UpdateRequestStatus(RequestStatusEnum.PENDING, 'Criando conta...'));
 
   const status: 'RESOLVE' | 'REJECT' = yield firebase
     .auth()
@@ -26,23 +26,27 @@ function* CreateAccountWithEmailAndPassword({
 
       if (!user) return RequestStatusEnum.REJECT;
 
-      const { emailVerified, uid } = user;
+      const { uid } = user;
 
       const usersCollection = firebase.firestore().collection(`users`);
 
       return usersCollection
         .doc(uid)
         .set({
-          email,
-          emailVerified,
           uid,
+          email,
         })
         .then(() => RequestStatusEnum.RESOLVE)
         .catch(() => RequestStatusEnum.REJECT);
     })
     .catch(() => RequestStatusEnum.REJECT);
 
-  yield put(UpdateRequestStatus(status));
+  const message =
+    status === 'REJECT'
+      ? 'Não foi possível criar sua conta, ocorreu algum erro =('
+      : 'Conta criada! Enviamos um e-mail, verifique e confirme sua conta.';
+
+  yield put(UpdateRequestStatus(status, message));
 }
 
 export default all([
