@@ -13,5 +13,7 @@ export type CreateAccountWithEmailAndPasswordAction = ActionReturnType<
 export type UserActions = CreateAccountWithEmailAndPasswordAction;
 
 export type UserState = {
-  //
+  authUser: {
+    //
+  };
 };

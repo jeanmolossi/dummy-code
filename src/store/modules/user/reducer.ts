@@ -1,7 +1,9 @@
 import { produce } from 'immer';
 import { UserActions, UserState } from './types';
 
-const INITIAL_STATE: UserState = {};
+const INITIAL_STATE: UserState = {
+  authUser: {},
+};
 
 export default function userReducer(
   state: UserState = INITIAL_STATE,
