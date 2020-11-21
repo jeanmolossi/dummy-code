@@ -51,10 +51,18 @@
   ],
   "sessions": [],
   "plans": [
-    { "tier": "Prime" },
-    { "tier": "1000" },
-    { "tier": "2000" },
-    { "tier": "3000" }
+    {
+      "tier": "Prime"
+    },
+    {
+      "tier": "1000"
+    },
+    {
+      "tier": "2000"
+    },
+    {
+      "tier": "3000"
+    }
   ],
   "stories": [
     {
@@ -120,28 +128,132 @@
       "class": "NodeJS",
       "typeConcepts": "Backend",
       "totalClass": 7,
-      "colorCard": "red"
+      "colorCard": "red",
+      "module": [
+        {
+          "id": 1,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 297
+        },
+        {
+          "id": 2,
+          "name": "Rotas e Autenticação",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 156
+        },
+        {
+          "id": 3,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 22
+        },
+        {
+          "id": 4,
+          "name": "JWT Token",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 333
+        }
+      ]
     },
     {
       "id": 2,
       "class": "ReactJS",
       "typeConcepts": "Frontend",
       "totalClass": 22,
-      "colorCard": "green"
+      "colorCard": "green",
+      "module": [
+        {
+          "id": 1,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 297
+        },
+        {
+          "id": 2,
+          "name": "Rotas e Autenticação",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 156
+        },
+        {
+          "id": 3,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 22
+        },
+        {
+          "id": 4,
+          "name": "JWT Token",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 333
+        }
+      ]
     },
     {
       "id": 3,
       "class": "VueJS",
       "typeConcepts": "Frontend",
       "totalClass": 302,
-      "colorCard": "yellow"
+      "colorCard": "yellow",
+      "module": [
+        {
+          "id": 1,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 297
+        },
+        {
+          "id": 2,
+          "name": "Rotas e Autenticação",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 156
+        },
+        {
+          "id": 3,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 22
+        },
+        {
+          "id": 4,
+          "name": "JWT Token",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 333
+        }
+      ]
     },
     {
       "id": 4,
       "class": "GraphQL",
       "typeConcepts": "ConsumerAPI",
       "totalClass": 22,
-      "colorCard": "blue"
+      "colorCard": "blue",
+      "module": [
+        {
+          "id": 1,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 297
+        },
+        {
+          "id": 2,
+          "name": "Rotas e Autenticação",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 156
+        },
+        {
+          "id": 3,
+          "name": "Context API",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 22
+        },
+        {
+          "id": 4,
+          "name": "JWT Token",
+          "img": "http://localhost:3000/files/image5.jpg",
+          "messages": 333
+        }
+      ]
     }
   ],
   "lessons": [],
@@ -150,7 +262,7 @@
     {
       "id": "1",
       "from": {
-        "name":"Alice Schneider",
+        "name": "Alice Schneider",
         "avatar": "http://192.168.0.104:3000/files/woman-avatar.png"
       },
       "to": "1",
@@ -161,7 +273,7 @@
     {
       "id": "2",
       "from": {
-        "name":"John Doe",
+        "name": "John Doe",
         "avatar": "http://192.168.0.104:3000/files/man-avatar.png"
       },
       "to": "1",
