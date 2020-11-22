@@ -18,7 +18,9 @@ const CamComponent: React.FC = () => {
   }, []);
 
   const switchCamera = useCallback(() => {
-    setFacingMode(prevState => (prevState ? undefined : { exact: 'user' }));
+    setFacingMode(prevState =>
+      prevState ? undefined : { exact: 'environment' },
+    );
   }, []);
 
   return (
