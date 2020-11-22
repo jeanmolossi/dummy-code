@@ -9,3 +9,4 @@ export { default as Notifications } from './Notifications';
 export { default as CreatePost } from './CreatePost';
 export { default as Module } from './Modules/Module';
 export { default as Lesson } from './Modules/Module/Lesson';
+export { default as EditProfile } from './Profile/EditProfile';
