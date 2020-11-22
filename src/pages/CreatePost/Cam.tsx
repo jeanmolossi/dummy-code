@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Cam, { WebcamProps } from 'react-webcam';
+import React, { useCallback, useRef, useState } from 'react';
+import Cam from 'react-webcam';
 import { Button } from '../../components';
 
 // import { Container } from './styles';
