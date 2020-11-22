@@ -7,11 +7,18 @@ import { Button } from '../../components';
 const CamComponent: React.FC = () => {
   const camRef = useRef<Cam>(null);
   const [preview, setPreview] = useState<any>('');
+  const [facingMode, setFacingMode] = useState<
+    { exact: 'user' | 'environment' } | undefined
+  >(undefined);
 
   const capture = useCallback(() => {
     const image = camRef.current?.getScreenshot();
 
     setPreview(image);
+  }, []);
+
+  const switchCamera = useCallback(() => {
+    setFacingMode(prevState => (prevState ? undefined : { exact: 'user' }));
   }, []);
 
   return (
@@ -21,10 +28,12 @@ const CamComponent: React.FC = () => {
         audio={false}
         videoConstraints={{
           aspectRatio: 9 / 16,
+          facingMode,
         }}
         screenshotFormat="image/webp"
       />
       <Button onClick={capture}>Captura</Button>
+      <Button onClick={switchCamera}>Trocar camera</Button>
 
       {!!preview && <img src={preview} alt="" />}
     </>
