@@ -112,7 +112,7 @@ const RequestsModalComponent = ({ app }: RequestModalProps) => {
       if (app.requestStatus !== 'PENDING' && app.requestStatus !== null) {
         timeout = setTimeout(() => {
           dispatch(UpdateRequestStatus(null));
-        }, 5000);
+        }, 15000);
       }
     } else {
       onClose();
