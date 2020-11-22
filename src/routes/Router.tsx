@@ -14,7 +14,6 @@ import {
   ConfirmAccount,
   CreatePost,
 } from '../pages';
-import Cam from '../pages/CreatePost/Cam';
 import { Route } from './index';
 
 const Router = () => {
@@ -33,7 +32,6 @@ const Router = () => {
       <Route path="/chat" component={Home} isPrivate />
 
       <Route path="/create-post" component={CreatePost} isPrivate />
-      <Route path="/cam" component={Cam} isPrivate />
 
       <Route path="/edit" component={EditProfile} isPrivate />
 

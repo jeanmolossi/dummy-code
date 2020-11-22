@@ -6,3 +6,4 @@ export { default as SuccessModal } from './layout/SuccessModal';
 export { default as UnsuccessModal } from './layout/UnsuccessModal';
 export { default as BottomTabs } from './layout/BottomTabs';
 export { default as TextArea } from './shared/TextArea';
+export { default as Cam } from './shared/Cam';

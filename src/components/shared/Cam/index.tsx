@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
+import { FiCamera, FiRepeat } from 'react-icons/fi';
 import Cam from 'react-webcam';
-import { Button } from '../../components';
-
-// import { Container } from './styles';
+import { Button } from '../../index';
+import { Container, ButtonsContainer } from './styles';
 
 const CamComponent: React.FC = () => {
   const camRef = useRef<Cam>(null);
@@ -24,7 +24,7 @@ const CamComponent: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <Cam
         ref={camRef}
         audio={false}
@@ -33,12 +33,28 @@ const CamComponent: React.FC = () => {
           facingMode,
         }}
         screenshotFormat="image/webp"
+        width="100%"
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          transform: `rotateY(180deg)`,
+        }}
       />
-      <Button onClick={capture}>Captura</Button>
-      <Button onClick={switchCamera}>Trocar camera</Button>
+
+      <ButtonsContainer>
+        <Button onClick={switchCamera}>
+          <FiRepeat />
+        </Button>
+        <Button onClick={capture}>
+          <FiCamera />
+        </Button>
+      </ButtonsContainer>
 
       {!!preview && <img src={preview} alt="" />}
-    </>
+    </Container>
   );
 };
 
