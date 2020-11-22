@@ -17,7 +17,7 @@ export const WrapperEditProfile = styled.div`
 `;
 
 export const ButtonSubmitEditProfile = styled(Button)`
-  width: 20rem;
+  width: 100%;
   margin-top: var(--spacing-xl1);
   justify-content: center;
   align-items: center;

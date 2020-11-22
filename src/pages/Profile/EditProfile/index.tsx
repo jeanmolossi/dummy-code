@@ -23,44 +23,48 @@ const EditProfile: React.FC = () => {
         <WrapperEditProfile>
           <h1>Edite Seu Perfil</h1>
           <Form
-            initialData={{
-              nome: '',
-              linkedin: '',
-              instagram: '',
-              youtube: '',
-              github: '',
-              twitch: '',
-              biograph: '',
+            onSubmit={() => {
+              //
             }}
-            onSubmit={() => {}}
           >
             <Input name="nome" icon={FiUser} placeholder="Digite seu Nome" />
+
             <Input
               name="linkedin"
               icon={FiLinkedin}
               placeholder="Digite seu Linkedin"
             />
+
             <Input
               name="instagram"
               icon={FiInstagram}
               placeholder="Digite seu Instagram"
             />
+
             <Input
               name="youtube"
               icon={FiYoutube}
               placeholder="Digite seu Youtube"
             />
+
             <Input
               name="github"
               icon={FiGithub}
               placeholder="Digite seu Github"
             />
+
             <Input
               name="twitch"
               icon={FaTwitch}
               placeholder="Digite seu Twitch"
             />
-            <TextArea name="biograph" placeholder="Biografia" />
+
+            <TextArea
+              label="Biografia"
+              name="biograph"
+              placeholder="Biografia"
+            />
+
             <ButtonSubmitEditProfile>
               <FiEdit />
               Salvar

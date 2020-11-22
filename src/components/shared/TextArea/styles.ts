@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
   > input {
     flex: 1;
@@ -18,11 +18,13 @@ export const Container = styled.div`
 `;
 
 export const BioGraph = styled.textarea`
-  width: 20rem;
-  height: 20rem;
+  width: 100%;
+  padding: var(--padding-md);
+
   margin-top: var(--spacing-md);
   background-color: var(--grey-300);
-  resize: none;
+  resize: vertical;
   outline: 0;
   color: white;
+  border-radius: var(--radii-sm);
 `;
