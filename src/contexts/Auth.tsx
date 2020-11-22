@@ -38,7 +38,16 @@ const AuthContext = ({ children }: AuthContextProps) => {
         UpdateRequestStatus('PENDING', 'Acessando sua conta, só um minutinho'),
       );
 
-      await signInWithEmailAndPassword(email, password);
+      const { status } = await signInWithEmailAndPassword(email, password);
+
+      if (status === 'REJECT') {
+        dispatch(
+          UpdateRequestStatus(
+            status,
+            'Não foi possível acessar sua conta. Verifique suas credenciais ou recupere sua senha',
+          ),
+        );
+      }
     },
     [dispatch],
   );
