@@ -1,4 +1,5 @@
 import { produce } from 'immer';
+import { resolvePhotoURL } from '../../../utils';
 import { User, UserActions, UserState } from './types';
 
 const INITIAL_STATE: UserState = {
@@ -16,7 +17,9 @@ export default function userReducer(
 
         const { user } = payload;
 
-        draft.authUser = user;
+        const authUser = resolvePhotoURL(user);
+
+        draft.authUser = authUser;
 
         break;
       }
