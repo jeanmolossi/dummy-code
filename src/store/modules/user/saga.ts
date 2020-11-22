@@ -1,15 +1,15 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { all, put, select, takeLatest } from 'redux-saga/effects';
+import { getUserByUid } from '../../../repositories';
 import { RequestStatusEnum, UpdateRequestStatus } from '../app/actions';
-import { CreateAccountWithEmailAndPasswordAction } from './types';
-
-type User = {
-  email: string;
-  emailVerified: boolean;
-  uid: string;
-};
+import { RootState } from '../rootTypes';
+import { UpdateAuthUser } from './actions';
+import {
+  CreateAccountWithEmailAndPasswordAction,
+  StartUserSessionAction,
+} from './types';
 
 function* CreateAccountWithEmailAndPassword({
   payload,
@@ -49,6 +49,28 @@ function* CreateAccountWithEmailAndPassword({
   yield put(UpdateRequestStatus(status, message));
 }
 
+function* StartUserSessionSaga({ payload }: StartUserSessionAction) {
+  const { uid } = payload;
+
+  const { authUser } = yield select((state: RootState) => ({
+    authUser: state.user.authUser,
+  }));
+
+  if (!authUser.uid) {
+    put(UpdateRequestStatus('PENDING', 'Carregando dados de usuário...'));
+  }
+
+  const { status, message, user } = yield getUserByUid(uid);
+
+  if (!authUser.uid) {
+    if (user) {
+      yield put(UpdateAuthUser({ user }));
+    }
+
+    yield put(UpdateRequestStatus(status, message));
+  }
+}
+
 export default all([
   takeLatest<
     CreateAccountWithEmailAndPasswordAction['type'],
@@ -56,5 +78,10 @@ export default all([
   >(
     '@user/CREATE_ACCOUNT_WITH_EMAIL_AND_PASSWORD',
     CreateAccountWithEmailAndPassword,
+  ),
+
+  takeLatest<StartUserSessionAction['type'], typeof StartUserSessionSaga>(
+    '@user/START_USER_SESSION',
+    StartUserSessionSaga,
   ),
 ]);

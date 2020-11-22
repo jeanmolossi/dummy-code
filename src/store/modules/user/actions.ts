@@ -1,6 +1,11 @@
 import {
   CreateAccountWithEmailAndPasswordAction,
   CreateAccountWithEmailAndPasswordPayload,
+  KillUserSessionAction,
+  StartUserSessionAction,
+  StartUserSessionPayload,
+  UpdateAuthUserAction,
+  UpdateAuthUserPayload,
 } from './types';
 
 export function CreateAccountWithEmailAndPassword({
@@ -12,6 +17,35 @@ export function CreateAccountWithEmailAndPassword({
     payload: {
       email,
       password,
+    },
+  };
+}
+
+export function StartUserSession({
+  uid,
+}: StartUserSessionPayload): StartUserSessionAction {
+  return {
+    type: '@user/START_USER_SESSION',
+    payload: {
+      uid,
+    },
+  };
+}
+
+export function KillUserSession(): KillUserSessionAction {
+  return {
+    type: '@user/KILL_USER_SESSION',
+    payload: null,
+  };
+}
+
+export function UpdateAuthUser({
+  user,
+}: UpdateAuthUserPayload): UpdateAuthUserAction {
+  return {
+    type: '@user/UPDATE_AUTH_USER',
+    payload: {
+      user,
     },
   };
 }

@@ -1,8 +1,8 @@
 import { produce } from 'immer';
-import { UserActions, UserState } from './types';
+import { User, UserActions, UserState } from './types';
 
 const INITIAL_STATE: UserState = {
-  authUser: {},
+  authUser: {} as User,
 };
 
 export default function userReducer(
@@ -11,10 +11,18 @@ export default function userReducer(
 ): UserState {
   return produce(state, draft => {
     switch (action.type) {
-      case '@user/CREATE_ACCOUNT_WITH_EMAIL_AND_PASSWORD': {
+      case '@user/UPDATE_AUTH_USER': {
         const { payload } = action;
-        console.log(payload);
-        //
+
+        const { user } = payload;
+
+        draft.authUser = user;
+
+        break;
+      }
+      case '@user/KILL_USER_SESSION': {
+        draft.authUser = {} as User;
+
         break;
       }
       default:
