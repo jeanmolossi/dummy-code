@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { RequestStatusEnum } from '../store/modules/app/actions';
-import { User } from '../store/modules/user/types';
+import { User } from '../store/modules/user';
 import { RepositoryFunctionReturn } from './types';
 
 export type GetUserByUidResponse = RepositoryFunctionReturn<{
