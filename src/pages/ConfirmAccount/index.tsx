@@ -52,7 +52,7 @@ const ConfirmAccount: React.FC = () => {
           'Você não confirmou o e-mail. Verifique seu spam e lixo eletrônico',
         ),
       );
-    }, 1000 * 60 * 1);
+    }, 1000 * 60 * 5);
 
     verify();
 
