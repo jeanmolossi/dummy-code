@@ -1,6 +1,4 @@
-import React, { useCallback } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import React from 'react';
 import { Variants } from 'framer-motion';
 import {
   FiBell,
@@ -10,6 +8,7 @@ import {
   FiUser,
   FiVideo,
 } from 'react-icons/fi';
+import { useAuth } from '../../../../contexts/Auth';
 import { Container, MenuItem } from './styles';
 
 interface DrawerContentProps {
@@ -22,9 +21,7 @@ const variants: Variants = {
 };
 
 const DrawerContent = ({ opened }: DrawerContentProps) => {
-  const signOut = useCallback(() => {
-    firebase.auth().signOut();
-  }, []);
+  const { signOut } = useAuth();
 
   return (
     <Container variants={variants} animate={opened ? 'opened' : 'closed'}>

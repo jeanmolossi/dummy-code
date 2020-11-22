@@ -4,6 +4,7 @@ import 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, MainLayout } from '../../components';
+import { useAuth } from '../../contexts/Auth';
 import { UpdateRequestStatus } from '../../store/modules/app/actions';
 import { Container } from './styles';
 
@@ -11,9 +12,7 @@ const ConfirmAccount: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const signOut = useCallback(() => {
-    firebase.auth().signOut();
-  }, []);
+  const { signOut } = useAuth();
 
   const verify = useCallback(() => {
     const { currentUser } = firebase.auth();
