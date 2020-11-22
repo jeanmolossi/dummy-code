@@ -1,5 +1,5 @@
 import React from 'react';
-import { Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { NavLink } from 'react-router-dom';
 import { Button } from '../../..';
@@ -24,7 +24,13 @@ const IconButton = ({
   asButton = false,
 }: IconButtonProps) => {
   return (
-    <Container variants={variants} initial="out" animate="in" exit="out">
+    <Container
+      as={asButton ? motion.div : motion.button}
+      variants={variants}
+      initial="out"
+      animate="in"
+      exit="out"
+    >
       {!asButton ? (
         <NavLink to={to}>
           <Icon />
