@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';

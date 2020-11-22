@@ -1,30 +1,59 @@
 import styled from 'styled-components';
-import Button from '../Button';
 
-export const Container = styled.div`
+interface ContainerProps {
+  aspectRatio: number;
+}
+
+export const Container = styled.div<ContainerProps>`
+  --aspect-ratio: ${({ aspectRatio }) => aspectRatio};
+
   position: relative;
 
   width: calc(100vw - var(--padding-md) * 2);
-  height: calc((100vw - var(--padding-md) * 2) * 1.625);
-
-  background: #fff;
+  height: calc((100vw - var(--padding-md) * 2) / (var(--aspect-ratio)));
+  margin-bottom: var(--spacing-xl2);
 
   > video {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    box-shadow: 0 4px 16px var(--grey-300);
+    border-radius: var(--radii-md);
+    overflow: hidden;
+    transition: all 0.3s;
   }
 `;
 
-export const ButtonsContainer = styled.div`
+export const PreviewContainer = styled.div`
   position: absolute;
-  top: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-around;
+  z-index: 99999;
 
-  > ${Button} {
+  > img {
+    z-index: 2;
+    transform: rotateY(180deg);
+
+    border-radius: var(--radii-md);
+    overflow: hidden;
   }
+`;
+
+export const ActionButtons = styled.div`
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing--md);
+`;
+
+export const ButtonsContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
 `;

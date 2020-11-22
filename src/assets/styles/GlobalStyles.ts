@@ -37,6 +37,12 @@ export default createGlobalStyle`
     --spacing-xl: 3.2rem;
     --spacing-xxl: 4.0rem;
     --spacing-xl1: 4.8rem;
+    --spacing-xl2: 5.6rem;
+    --spacing-xl3: 6.4rem;
+    --spacing-xl4: 7.2rem;
+    --spacing-xl5: 8.0rem;
+    --spacing-xl6: 9.6rem;
+    --spacing-xl7: 12.6rem;
 
     --padding-xs: 0.4rem;
     --padding-sm: 0.8rem;
