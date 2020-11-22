@@ -9,7 +9,7 @@ import {
   FiYoutube,
 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { MainLayout } from '../../components';
+import { Button, MainLayout } from '../../components';
 import {
   HeroUser,
   Avatar,
@@ -17,7 +17,7 @@ import {
   UserSocial,
   Socials,
   Points,
-  UserBio,
+  UserBioAndEditProfile,
 } from './styles';
 
 const Profile: React.FC = () => {
@@ -77,12 +77,15 @@ const Profile: React.FC = () => {
         </Points>
       </UserSocial>
 
-      <UserBio>
+      <UserBioAndEditProfile>
         Estamos enfrentando um sério dilema de negócios, com o Facebook tirando
         uma boa parte do tráfego para sites de notícias e conteúdo, e os
         bloqueadores de anúncios consumindo o que sobrou dele enquanto cortam as
         receitas de publicidade.
-      </UserBio>
+        <Button as={Link} to="/edit">
+          Editar seu Perfil
+        </Button>
+      </UserBioAndEditProfile>
     </MainLayout>
   );
 };

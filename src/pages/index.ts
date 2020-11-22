@@ -7,3 +7,4 @@ export { default as Modules } from './Modules';
 export { default as Notifications } from './Notifications';
 export { default as Module } from './Modules/Module';
 export { default as Lesson } from './Modules/Module/Lesson';
+export { default as EditProfile } from './Profile/EditProfile';

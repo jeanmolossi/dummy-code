@@ -148,7 +148,7 @@ export const Points = styled.div`
   }
 `;
 
-export const UserBio = styled.div`
+export const UserBioAndEditProfile = styled.div`
   padding: var(--padding-lg);
   background-image: var(--dark-100);
   flex: 1;
