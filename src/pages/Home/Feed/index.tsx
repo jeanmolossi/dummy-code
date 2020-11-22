@@ -1,38 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../../services/api';
+import { FeedPosts, getFeed } from '../../../repositories/postRepository';
 import SinglePost from './SinglePost';
 import { Container } from './styles';
 
-export interface ApiPostsResponse {
-  id: string;
-  created_at: string;
-  user: {
-    id: string;
-    name: string;
-    avatar: string;
-  };
-  post: {
-    id: string;
-    text: string;
-    images: string[];
-  };
-  comments: number;
-  likes: number;
-}
-
 const Feed = () => {
-  const [posts, setPosts] = useState([] as ApiPostsResponse[]);
+  const [posts, setPosts] = useState([] as FeedPosts[]);
 
   useEffect(() => {
-    api.get<ApiPostsResponse[]>(`/posts`).then(response => {
-      setPosts(response.data);
+    getFeed().then(feedPosts => {
+      setPosts(feedPosts);
     });
   }, []);
 
   return (
     <Container>
-      {posts.map(post => (
-        <SinglePost key={post.id} {...post} />
+      {posts.map(({ post, author }) => (
+        <SinglePost key={post.postId} {...{ post, author }} />
       ))}
     </Container>
   );

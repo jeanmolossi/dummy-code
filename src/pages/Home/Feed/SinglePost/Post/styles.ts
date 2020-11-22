@@ -20,8 +20,10 @@ export const ImageContainer = styled.div`
   flex-shrink: 0;
   border-radius: var(--radii-md);
   overflow: hidden;
+  height: 20.8rem;
 
   > img {
     object-fit: cover;
+    height: 100%;
   }
 `;

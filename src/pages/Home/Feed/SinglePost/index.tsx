@@ -1,27 +1,25 @@
-import React from 'react';
-import { ApiPostsResponse } from '../index';
+import React, { useMemo } from 'react';
+import { FeedPosts } from '../../../../repositories/postRepository';
 import AuthorPost from './AuthorPost';
 import Post from './Post';
 import SocialActivity from './SocialActivity';
 import { Container } from './styles';
 
-type SinglePostProps = ApiPostsResponse;
+type SinglePostProps = FeedPosts;
 
-const SinglePost = ({
-  id,
-  post,
-  comments,
-  user,
-  likes,
-  created_at,
-}: SinglePostProps) => {
+const SinglePost = ({ post, author }: SinglePostProps) => {
+  const { uid, created_at, comments, likes, postId } = useMemo(
+    () => ({ ...post, ...author }),
+    [post, author],
+  );
+
   return (
     <Container>
-      <AuthorPost {...user} created_at={created_at} />
+      <AuthorPost {...author} created_at={created_at} />
 
       <Post {...post} />
 
-      <SocialActivity {...{ id, postId: post.id, comments, likes }} />
+      <SocialActivity {...{ uid, postId, comments: comments.length, likes }} />
     </Container>
   );
 };

@@ -1,18 +1,16 @@
 import React from 'react';
-import { formatDistance, parseISO } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { Link } from 'react-router-dom';
+import { User } from '../../../../../store/modules/user';
 import { Container, Avatar, UserInfo } from './styles';
 
-interface AuthorPostProps {
-  id: string;
-  name: string;
-  avatar: string;
-  created_at: string;
+interface AuthorPostProps extends User {
+  created_at: number;
 }
 
-const AuthorPost = ({ id, name, avatar, created_at }: AuthorPostProps) => {
-  const date = formatDistance(new Date(), parseISO(created_at), {
+const AuthorPost = ({ uid, name, photoURL, created_at }: AuthorPostProps) => {
+  const date = formatDistance(created_at, new Date(), {
     addSuffix: true,
     locale: ptBR,
   });
@@ -21,10 +19,10 @@ const AuthorPost = ({ id, name, avatar, created_at }: AuthorPostProps) => {
     <Container>
       <Avatar
         as={Link}
-        to={`/profile/${id}`}
-        variant={Number(id) % 2 === 0 ? 'red' : 'yellow'}
+        to={`/profile/${uid}`}
+        variant={Number(uid) % 2 === 0 ? 'red' : 'yellow'}
       >
-        <img src={avatar} alt={name} />
+        {photoURL && <img src={photoURL} alt={name} />}
       </Avatar>
       <UserInfo>
         <h4>{name}</h4>

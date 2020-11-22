@@ -4,14 +4,14 @@ import MakeComment from './MakeComment';
 import { Container, Comments, Likes } from './styles';
 
 interface SocialActivityProps {
-  id: string;
+  uid: string;
   postId: string;
   comments: number;
   likes: number;
 }
 
 const SocialActivity = ({
-  id,
+  uid,
   postId,
   comments,
   likes,
@@ -29,7 +29,7 @@ const SocialActivity = ({
         </Likes>
       </div>
 
-      <MakeComment {...{ id, postId }} />
+      <MakeComment {...{ id: uid, postId }} />
     </Container>
   );
 };

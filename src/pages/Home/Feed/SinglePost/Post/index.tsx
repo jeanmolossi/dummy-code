@@ -1,16 +1,13 @@
 import React from 'react';
+import { Post as PostType } from '../../../../../store/modules/posts';
 import { Container, Images, ImageContainer } from './styles';
 
-interface PostProps {
-  id: string;
-  text: string;
-  images: string[];
-}
+type PostProps = PostType;
 
-const Post = ({ id, text, images }: PostProps) => {
+const Post = ({ post, images }: PostProps) => {
   return (
     <Container>
-      <p>{text}</p>
+      <p>{post}</p>
       <Images>
         {images.map((image, index) => (
           <ImageContainer key={index.toString()}>
