@@ -11,7 +11,9 @@ import {
   Module,
   Lesson,
   ConfirmAccount,
+  CreatePost,
 } from '../pages';
+import Cam from '../pages/CreatePost/Cam';
 import { Route } from './index';
 
 const Router = () => {
@@ -28,6 +30,9 @@ const Router = () => {
       <Route path="/notifications" component={Notifications} isPrivate />
       <Route path="/modules" component={Modules} isPrivate />
       <Route path="/chat" component={Home} isPrivate />
+
+      <Route path="/create-post" component={CreatePost} isPrivate />
+      <Route path="/cam" component={Cam} isPrivate />
 
       <Route
         path={['/module/:moduleId', '/module']}
