@@ -1,15 +1,22 @@
 import { ActionReturnType } from '../rootTypes';
 
-export type User = {
+export type FirebaseUser = {
   uid: string;
   displayName?: string;
   photoURL?: string;
   email: string;
 };
 
+export type User = {
+  uid: string;
+  name: string;
+  email: string;
+};
+
 export type CreateAccountWithEmailAndPasswordPayload = {
   email: string;
   password: string;
+  name: string;
 };
 
 export type CreateAccountWithEmailAndPasswordAction = ActionReturnType<

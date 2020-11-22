@@ -14,7 +14,7 @@ import {
 function* CreateAccountWithEmailAndPassword({
   payload,
 }: CreateAccountWithEmailAndPasswordAction) {
-  const { email, password } = payload;
+  const { email, password, name } = payload;
 
   yield put(UpdateRequestStatus(RequestStatusEnum.PENDING, 'Criando conta...'));
 
@@ -34,6 +34,7 @@ function* CreateAccountWithEmailAndPassword({
         .doc(uid)
         .set({
           uid,
+          name,
           email,
         })
         .then(() => RequestStatusEnum.RESOLVE)
