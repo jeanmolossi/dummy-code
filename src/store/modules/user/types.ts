@@ -1,8 +1,22 @@
 import { ActionReturnType } from '../rootTypes';
 
+export type FirebaseUser = {
+  uid: string;
+  displayName?: string;
+  photoURL?: string;
+  email: string;
+};
+
+export type User = {
+  uid: string;
+  name: string;
+  email: string;
+};
+
 export type CreateAccountWithEmailAndPasswordPayload = {
   email: string;
   password: string;
+  name: string;
 };
 
 export type CreateAccountWithEmailAndPasswordAction = ActionReturnType<
@@ -10,8 +24,34 @@ export type CreateAccountWithEmailAndPasswordAction = ActionReturnType<
   CreateAccountWithEmailAndPasswordPayload
 >;
 
-export type UserActions = CreateAccountWithEmailAndPasswordAction;
+export type StartUserSessionPayload = {
+  uid: string;
+};
+
+export type StartUserSessionAction = ActionReturnType<
+  '@user/START_USER_SESSION',
+  StartUserSessionPayload
+>;
+
+export type KillUserSessionAction = ActionReturnType<
+  '@user/KILL_USER_SESSION',
+  null
+>;
+
+export type UpdateAuthUserPayload = {
+  user: User;
+};
+
+export type UpdateAuthUserAction = ActionReturnType<
+  '@user/UPDATE_AUTH_USER',
+  UpdateAuthUserPayload
+>;
+
+export type UserActions =
+  | CreateAccountWithEmailAndPasswordAction
+  | UpdateAuthUserAction
+  | KillUserSessionAction;
 
 export type UserState = {
-  //
+  authUser: User;
 };

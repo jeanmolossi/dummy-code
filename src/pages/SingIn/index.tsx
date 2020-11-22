@@ -1,21 +1,13 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Form } from '@unform/web';
-import { FiArrowRight, FiLock, FiUser } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
+import { FiArrowRight, FiLock, FiMail } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { MainLayout, Input, Button } from '../../components';
+import { useAuth } from '../../contexts/Auth';
 import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignIn = () => {
-  const history = useHistory();
-
-  const handleSubmit = useCallback(
-    data => {
-      // eslint-disable-next-line no-console
-      console.log(data);
-      history.push('/home');
-    },
-    [history],
-  );
+  const { signIn } = useAuth();
 
   return (
     <MainLayout showBottomTabs={false}>
@@ -25,14 +17,14 @@ const SignIn = () => {
         <h1>Wellcome!</h1>
         <h2>Acesse para continuar</h2>
 
-        <Form onSubmit={handleSubmit}>
-          <Input icon={FiUser} name="username" placeholder="Nick name" />
+        <Form onSubmit={signIn}>
+          <Input icon={FiMail} name="email" placeholder="E-mail" />
 
           <Input
             icon={FiLock}
             name="password"
             type="password"
-            placeholder="Sue senha ultra-secreta"
+            placeholder="Sua senha ultra-secreta"
           />
 
           <ButtonsContainer>
@@ -45,7 +37,7 @@ const SignIn = () => {
               Esqueceu sua senha?
             </Button>
 
-            <Button as={Link} to="/signup" variant="yellow" translucent>
+            <Button as={Link} to="/signup" variant="yellow" $translucent>
               Criar conta
             </Button>
           </ButtonsContainer>

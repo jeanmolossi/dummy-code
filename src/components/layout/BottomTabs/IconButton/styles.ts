@@ -8,9 +8,13 @@ export const Container = styled(motion.button).attrs({ type: 'button' })`
   > a {
     color: var(--grey-100);
     padding: var(--padding-md);
-    font-size: var(--padding-md);
+    font-size: var(--padding-lg);
     background: transparent;
     border-radius: var(--radii-full);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.active {
       background: var(--green-200);

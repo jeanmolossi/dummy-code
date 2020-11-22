@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { Form } from '@unform/web';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import {
   FiArrowLeft,
   FiArrowRight,
@@ -8,75 +10,40 @@ import {
   FiUser,
 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import {
-  MainLayout,
-  Input,
-  Button,
-  UnsuccessModal,
-  SuccessModal,
-} from '../../components';
-import { RequestStatusEnum } from '../../store/modules/app/actions';
+import { Link, useHistory } from 'react-router-dom';
+import { MainLayout, Input, Button } from '../../components';
 import { RootState } from '../../store/modules/rootTypes';
 import { CreateAccountWithEmailAndPassword } from '../../store/modules/user/actions';
-import { useModal } from '../../utils';
 import { Container, Logo, ButtonsContainer } from './styles';
 
 const SignUp = () => {
-  const {
-    isOpen: isOpenResolve,
-    onClose: onCloseResolve,
-    onOpen: onOpenResolve,
-  } = useModal();
-  const {
-    isOpen: isOpenReject,
-    onClose: onCloseReject,
-    onOpen: onOpenReject,
-  } = useModal();
-  const {
-    isOpen: isOpenPending,
-    onClose: onClosePending,
-    onOpen: onOpenPending,
-  } = useModal();
-
   const dispatch = useDispatch();
-  const { app } = useSelector((state: RootState) => ({ app: state.app }));
+  const history = useHistory();
+
+  const { requestStatus } = useSelector((state: RootState) => ({
+    requestStatus: state.app.requestStatus,
+  }));
 
   const handleSubmit = useCallback(
     data => {
-      // eslint-disable-next-line no-console
       dispatch(CreateAccountWithEmailAndPassword(data));
     },
     [dispatch],
   );
 
   useEffect(() => {
-    if (app.requestStatus === RequestStatusEnum.PENDING) {
-      onOpenPending();
-    }
-    if (app.requestStatus === RequestStatusEnum.RESOLVE) {
-      onClosePending();
-      onOpenResolve();
-    }
-    if (app.requestStatus === RequestStatusEnum.REJECT) {
-      onClosePending();
-      onOpenReject();
-    }
+    const subscribe = firebase.auth().onAuthStateChanged(user => {
+      if (user && user.emailVerified) {
+        history.push('/home');
+      } else if (user && !user.emailVerified) {
+        if (requestStatus === null) history.push('/confirm-account');
+      }
+    });
 
     return () => {
-      onClosePending();
-      onCloseReject();
-      onCloseResolve();
+      subscribe();
     };
-  }, [
-    onOpenReject,
-    onCloseReject,
-    onOpenPending,
-    onClosePending,
-    onOpenResolve,
-    onCloseResolve,
-    app,
-  ]);
+  }, [history, requestStatus]);
 
   return (
     <MainLayout showBottomTabs={false}>
@@ -87,6 +54,12 @@ const SignUp = () => {
         <h2>Vamos começar</h2>
 
         <Form onSubmit={handleSubmit}>
+          <Input
+            icon={FiUser}
+            name="name"
+            placeholder="Digite seu nome/apelido"
+          />
+
           <Input icon={FiMail} name="email" placeholder="Seu melhor e-mail" />
 
           <Input
@@ -97,7 +70,7 @@ const SignUp = () => {
           />
 
           <ButtonsContainer>
-            <Button as={Link} to="/" variant="red" translucent>
+            <Button as={Link} to="/" variant="red" $translucent>
               <FiArrowLeft />
             </Button>
 
@@ -108,39 +81,6 @@ const SignUp = () => {
           </ButtonsContainer>
         </Form>
       </Container>
-
-      <SuccessModal
-        isOpen={isOpenPending}
-        onClose={onClosePending}
-        title="Cadastrando..."
-        Description={<>Aguarde enquanto registramos sua conta...</>}
-        goRoute="/signup"
-        textButton="Aguarde..."
-      />
-
-      <SuccessModal
-        isOpen={isOpenResolve}
-        onClose={onCloseResolve}
-        title="Cadastrado"
-        Description={<>Sua conta foi registrada com sucesso!</>}
-        goRoute="/"
-        textButton="Voltar para o login"
-      />
-
-      <UnsuccessModal
-        isOpen={isOpenReject}
-        onClose={onCloseReject}
-        title="Ocorreu um erro"
-        Description={
-          <>
-            Houve algum erro interno. Não conseguimos cadastrar sua conta.
-            <br />
-            Tente novamente mais tarde.
-          </>
-        }
-        goRoute="/"
-        textButton="Voltar para o início"
-      />
     </MainLayout>
   );
 };

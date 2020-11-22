@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
-import firebaseConfig from '../configs/firebaseConfig';
-
-firebase.initializeApp(firebaseConfig);
+export * from './types';
+export * from './sessionRepository';
+export * from './userRepository';
+// new extra line

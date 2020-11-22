@@ -41,7 +41,7 @@ const MakeComment = ({ lessonId }: MakeCommentProps) => {
           <input placeholder="Deixe um comentário" />
         </InputBox>
 
-        <Button translucent>
+        <Button $translucent>
           <FiSend />
         </Button>
       </InputController>

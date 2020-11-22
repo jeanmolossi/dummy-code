@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import {
   ForgotPassword,
   Home,
@@ -11,27 +11,39 @@ import {
   Module,
   Lesson,
   EditProfile,
+  ConfirmAccount,
+  CreatePost,
 } from '../pages';
+import Cam from '../pages/CreatePost/Cam';
+import { Route } from './index';
 
 const Router = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/forgot-password" component={ForgotPassword} />
+    <Switch>
+      <Route path="/" exact component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/forgot-password" component={ForgotPassword} />
+      <Route path="/confirm-account" component={ConfirmAccount} />
 
-        <Route path="/home" component={Home} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/favorites" component={Home} />
-        <Route path="/notifications" component={Notifications} />
-        <Route path="/modules" component={Modules} />
-        <Route path="/chat" component={Home} />
-        <Route path="/edit" component={EditProfile} />
-        <Route path={['/module/:moduleId', '/module']} component={Module} />
-        <Route path={['/lesson', '/lesson/:id']} component={Lesson} />
-      </Switch>
-    </BrowserRouter>
+      <Route path="/home" component={Home} isPrivate />
+      <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/favorites" component={Home} isPrivate />
+      <Route path="/notifications" component={Notifications} isPrivate />
+      <Route path="/modules" component={Modules} isPrivate />
+      <Route path="/chat" component={Home} isPrivate />
+
+      <Route path="/create-post" component={CreatePost} isPrivate />
+      <Route path="/cam" component={Cam} isPrivate />
+        
+        <Route path="/edit" component={EditProfile} isPrivate />
+
+      <Route
+        path={['/module/:moduleId', '/module']}
+        component={Module}
+        isPrivate
+      />
+      <Route path={['/lesson/:id', '/lesson']} component={Lesson} isPrivate />
+    </Switch>
   );
 };
 

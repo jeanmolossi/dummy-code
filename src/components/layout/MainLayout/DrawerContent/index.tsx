@@ -8,6 +8,7 @@ import {
   FiUser,
   FiVideo,
 } from 'react-icons/fi';
+import { useAuth } from '../../../../contexts/Auth';
 import { Container, MenuItem } from './styles';
 
 interface DrawerContentProps {
@@ -20,6 +21,8 @@ const variants: Variants = {
 };
 
 const DrawerContent = ({ opened }: DrawerContentProps) => {
+  const { signOut } = useAuth();
+
   return (
     <Container variants={variants} animate={opened ? 'opened' : 'closed'}>
       <MenuItem to="/home">
@@ -42,7 +45,7 @@ const DrawerContent = ({ opened }: DrawerContentProps) => {
         <FiVideo /> Aulas
       </MenuItem>
 
-      <MenuItem to="/">
+      <MenuItem to="/" onClick={signOut}>
         <FiLogOut /> Sair
       </MenuItem>
     </Container>

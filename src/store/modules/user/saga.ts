@@ -1,23 +1,22 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { stat } from 'fs';
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { all, put, select, takeLatest } from 'redux-saga/effects';
+import { getUserByUid } from '../../../repositories';
 import { RequestStatusEnum, UpdateRequestStatus } from '../app/actions';
-import { CreateAccountWithEmailAndPasswordAction } from './types';
-
-type User = {
-  email: string;
-  emailVerified: boolean;
-  uid: string;
-};
+import { RootState } from '../rootTypes';
+import { UpdateAuthUser } from './actions';
+import {
+  CreateAccountWithEmailAndPasswordAction,
+  StartUserSessionAction,
+} from './types';
 
 function* CreateAccountWithEmailAndPassword({
   payload,
 }: CreateAccountWithEmailAndPasswordAction) {
-  const { email, password } = payload;
+  const { email, password, name } = payload;
 
-  yield put(UpdateRequestStatus(RequestStatusEnum.PENDING));
+  yield put(UpdateRequestStatus(RequestStatusEnum.PENDING, 'Criando conta...'));
 
   const status: 'RESOLVE' | 'REJECT' = yield firebase
     .auth()
@@ -27,23 +26,50 @@ function* CreateAccountWithEmailAndPassword({
 
       if (!user) return RequestStatusEnum.REJECT;
 
-      const { emailVerified, uid } = user;
+      const { uid } = user;
 
       const usersCollection = firebase.firestore().collection(`users`);
 
       return usersCollection
         .doc(uid)
         .set({
-          email,
-          emailVerified,
           uid,
+          name,
+          email,
         })
         .then(() => RequestStatusEnum.RESOLVE)
         .catch(() => RequestStatusEnum.REJECT);
     })
     .catch(() => RequestStatusEnum.REJECT);
 
-  yield put(UpdateRequestStatus(status));
+  const message =
+    status === 'REJECT'
+      ? 'Não foi possível criar sua conta, ocorreu algum erro =('
+      : 'Conta criada! Enviamos um e-mail, verifique e confirme sua conta.';
+
+  yield put(UpdateRequestStatus(status, message));
+}
+
+function* StartUserSessionSaga({ payload }: StartUserSessionAction) {
+  const { uid } = payload;
+
+  const { authUser } = yield select((state: RootState) => ({
+    authUser: state.user.authUser,
+  }));
+
+  if (!authUser.uid) {
+    put(UpdateRequestStatus('PENDING', 'Carregando dados de usuário...'));
+  }
+
+  const { status, message, user } = yield getUserByUid(uid);
+
+  if (!authUser.uid) {
+    if (user) {
+      yield put(UpdateAuthUser({ user }));
+    }
+
+    yield put(UpdateRequestStatus(status, message));
+  }
 }
 
 export default all([
@@ -53,5 +79,10 @@ export default all([
   >(
     '@user/CREATE_ACCOUNT_WITH_EMAIL_AND_PASSWORD',
     CreateAccountWithEmailAndPassword,
+  ),
+
+  takeLatest<StartUserSessionAction['type'], typeof StartUserSessionSaga>(
+    '@user/START_USER_SESSION',
+    StartUserSessionSaga,
   ),
 ]);

@@ -3,6 +3,7 @@ import { AppActions, AppState } from './types';
 
 const INITIAL_STATE: AppState = {
   requestStatus: null,
+  requestMessage: null,
 };
 
 export default function appReducer(
@@ -15,7 +16,10 @@ export default function appReducer(
       case '@app/UPDATE_REQUEST_STATUS': {
         const { payload } = action;
 
-        draft.requestStatus = payload;
+        const { status, message } = payload;
+
+        draft.requestStatus = status;
+        draft.requestMessage = message;
 
         break;
       }

@@ -1,5 +1,5 @@
-import { MotionValue, useElementScroll, useTransform } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
+import { MotionValue, useElementScroll, useTransform } from 'framer-motion';
 import { FiSearch, FiMessageCircle } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
 import { MainLayout } from '../../../components';
@@ -12,7 +12,7 @@ import {
   ModuloInfo,
   Messages,
   CardModules,
-  HeaderTitleAndInput
+  HeaderTitleAndInput,
 } from './styles';
 
 interface ApiModuleResponse {
@@ -24,9 +24,7 @@ interface ApiModuleResponse {
   }>;
 }
 
-
 const Module: React.FC = () => {
-
   const { moduleId } = useParams<{ moduleId: string }>();
 
   const moduleElementRef = useRef<HTMLDivElement>(null);
@@ -35,14 +33,15 @@ const Module: React.FC = () => {
   useEffect(() => {
     api.get<ApiModuleResponse>(`/modules/${moduleId}`).then(response => {
       setModule(response.data.module);
-    })
-
-  }, [])
+    });
+  }, [moduleId]);
 
   const { scrollXProgress } = useElementScroll(moduleElementRef);
-  const currentIndex = useTransform(scrollXProgress, [0, 1], [0, module.length - 1])
-
-
+  const currentIndex = useTransform(
+    scrollXProgress,
+    [0, 1],
+    [0, module.length - 1],
+  );
 
   return (
     <MainLayout>
@@ -54,17 +53,18 @@ const Module: React.FC = () => {
           </InputSearch>
           <h1>ReactJS</h1>
         </HeaderTitleAndInput>
-        <ModuleWrapper ref={moduleElementRef} >
+        <ModuleWrapper ref={moduleElementRef}>
           {module.map((mod, index) => (
-            <CardModule key={index} {...{ mod, index, currentIndex }} />
+            <CardModule
+              key={index.toString()}
+              {...{ mod, index, currentIndex }}
+            />
           ))}
-
         </ModuleWrapper>
       </Container>
     </MainLayout>
   );
 };
-
 
 interface CardModuleProp {
   mod: ApiModuleResponse['module'][0];
@@ -73,7 +73,12 @@ interface CardModuleProp {
 }
 
 const CardModule = ({ mod, currentIndex, index }: CardModuleProp) => {
-  const scale = useTransform(currentIndex, [index - 1, index, index + 1], [0.7, 1.0, 0.7], { clamp: true })
+  const scale = useTransform(
+    currentIndex,
+    [index - 1, index, index + 1],
+    [0.7, 1.0, 0.7],
+    { clamp: true },
+  );
   return (
     <CardModules style={{ scale }} key={mod.id}>
       <ModuleImage img={mod.img}>
@@ -87,10 +92,6 @@ const CardModule = ({ mod, currentIndex, index }: CardModuleProp) => {
       </ModuleImage>
     </CardModules>
   );
-}
-
-
+};
 
 export default Module;
-
-

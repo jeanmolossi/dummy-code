@@ -1,21 +1,47 @@
 import React, { useCallback } from 'react';
 import { Form } from '@unform/web';
+import firebase from 'firebase/app';
 import { FiArrowLeft, FiArrowRight, FiMail } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import { MainLayout, Input, Button, SuccessModal } from '../../components';
-import { useModal } from '../../utils';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { MainLayout, Input, Button } from '../../components';
+import {
+  RequestStatusEnum,
+  UpdateRequestStatus,
+} from '../../store/modules/app';
 import { Container, Logo, ButtonsContainer } from './styles';
+import 'firebase/auth';
 
 const SignUp = () => {
-  const { isOpen, onClose, onOpen } = useModal();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = useCallback(
-    data => {
-      // eslint-disable-next-line no-console
-      console.log(data);
-      onOpen();
+    async data => {
+      dispatch(
+        UpdateRequestStatus(
+          'PENDING',
+          'Enviando e-mail de recuperação de senha',
+        ),
+      );
+
+      const { email } = data;
+      const status = await firebase
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then(() => RequestStatusEnum.RESOLVE)
+        .catch(() => RequestStatusEnum.REJECT);
+
+      const message =
+        status === 'REJECT'
+          ? 'Não encontramos este e-mail, tente cadastrar-se outra vez caso já tenha feito =('
+          : 'E-mail de recuperação enviado! Confira a caixa de spam também!';
+
+      dispatch(UpdateRequestStatus(status, message));
+
+      history.push('/');
     },
-    [onOpen],
+    [dispatch, history],
   );
 
   return (
@@ -38,7 +64,7 @@ const SignUp = () => {
           />
 
           <ButtonsContainer>
-            <Button as={Link} to="/" variant="red" translucent>
+            <Button as={Link} to="/" variant="red" $translucent>
               <FiArrowLeft />
             </Button>
 
@@ -49,21 +75,6 @@ const SignUp = () => {
           </ButtonsContainer>
         </Form>
       </Container>
-
-      <SuccessModal
-        {...{ isOpen, onClose }}
-        title="Recuperação enviada!"
-        Description={
-          <>
-            Verifique seu e-mail que enviamos para você as instruções.
-            <br />
-            <br />
-            Após completar os passos você já pode fazer o login
-          </>
-        }
-        goRoute="/"
-        textButton="Voltar para login"
-      />
     </MainLayout>
   );
 };

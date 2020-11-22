@@ -1,10 +1,10 @@
 export default {
-  apiKey: 'REPLACE_HERE',
-  authDomain: 'REPLACE_HERE',
-  databaseURL: 'REPLACE_HERE',
-  projectId: 'REPLACE_HERE',
-  storageBucket: 'REPLACE_HERE',
-  messagingSenderId: 'REPLACE_HERE',
-  appId: 'REPLACE_HERE',
-  measurementId: 'REPLACE_HERE',
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASEURL,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_APPID,
+  measurementId: process.env.REACT_APP_MEASUREMENTID,
 };

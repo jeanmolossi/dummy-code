@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { Transition, useCycle, Variants } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
 import BottomTabs from '../BottomTabs';
+import RequestsModal from '../RequestsModal';
 import DrawerContent from './DrawerContent';
 import {
   AnimationContainer,
@@ -78,6 +79,8 @@ const MainLayout = ({ children, showBottomTabs = true }: MainLayoutProps) => {
           <BottomTabs toggleDrawer={() => cycle()} />
         )}
       </Container>
+
+      <RequestsModal />
     </AnimationContainer>
   );
 };
