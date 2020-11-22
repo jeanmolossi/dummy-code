@@ -1,17 +1,28 @@
 import React from 'react';
+import firebase from 'firebase/app';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 import { GlobalStyle } from './assets/styles';
+import firebaseConfig from './configs/firebaseConfig';
+import AppContextProvider from './contexts';
 import { Router } from './routes';
-import store from './store';
+import { persistor, store } from './store';
 
-import './repositories';
+firebase.initializeApp(firebaseConfig);
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Router />
-      <GlobalStyle />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppContextProvider>
+            <Router />
+            <GlobalStyle />
+          </AppContextProvider>
+        </PersistGate>
+      </Provider>
+    </BrowserRouter>
   );
 };
 
