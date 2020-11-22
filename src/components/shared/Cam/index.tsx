@@ -18,7 +18,7 @@ import {
 export type ImageBase64 = string | null | undefined;
 
 interface CamProps {
-  onCapture: (image: ImageBase64) => void;
+  onCapture?: (image: ImageBase64) => void;
   onSaveAction: (image: ImageBase64) => void;
   aspectRatio?: number;
 }
@@ -38,17 +38,20 @@ const CamComponent = ({
   const capture = useCallback(() => {
     const image = camRef.current?.getScreenshot();
 
-    onCapture(image);
+    if (onCapture) onCapture(image);
+
     setPreview(image);
   }, [onCapture]);
 
   const deletePhoto = useCallback(() => {
-    onCapture(null);
+    if (onCapture) onCapture(null);
+
     setPreview(null);
   }, [onCapture]);
 
   const handleSaveAction = useCallback(() => {
     onSaveAction(preview);
+
     setPreview(null);
   }, [onSaveAction, preview]);
 

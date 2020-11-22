@@ -18,6 +18,8 @@ export const Container = styled.div<ContainerProps>`
     border-radius: var(--radii-md);
     overflow: hidden;
     transition: all 0.3s;
+    width: 100%;
+    height: 100%;
   }
 `;
 
