@@ -104,17 +104,21 @@ export async function getFeed(): Promise<FeedPosts[]> {
 
   const postsPromise = await firebaseRef
     .collection('posts')
+    .orderBy('created_at', 'desc')
     .get()
     .then(collection => {
       return collection.docs.map(doc => doc.data());
     })
     .then(foundPosts =>
       foundPosts.map(async post => {
-        const postAuthor = await firebaseRef
+        const { postAuthor } = await firebaseRef
           .collection('users')
           .doc(post.authorId)
           .get()
-          .then(userDoc => userDoc.data() as User);
+          .then(userDoc => ({
+            status: RequestStatusEnum.RESOLVE,
+            postAuthor: userDoc.data() as User,
+          }));
 
         const author = resolvePhotoURL(postAuthor);
 

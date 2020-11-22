@@ -41,6 +41,8 @@ const Router = () => {
         isPrivate
       />
       <Route path={['/lesson/:id', '/lesson']} component={Lesson} isPrivate />
+
+      <Route component={SignIn} />
     </Switch>
   );
 };
