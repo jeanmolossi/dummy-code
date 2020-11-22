@@ -34,8 +34,8 @@ const Router = () => {
 
       <Route path="/create-post" component={CreatePost} isPrivate />
       <Route path="/cam" component={Cam} isPrivate />
-        
-        <Route path="/edit" component={EditProfile} isPrivate />
+
+      <Route path="/edit" component={EditProfile} isPrivate />
 
       <Route
         path={['/module/:moduleId', '/module']}

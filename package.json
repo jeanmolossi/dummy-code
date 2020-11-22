@@ -35,7 +35,7 @@
     "start": "react-scripts start",
     "start:dev": "react-scripts start",
     "start:api": "cp ./fakeapi/fakeapi.example.json ./fakeapi/fakeapi.json && json-server --watch ./fakeapi/fakeapi.json --port 3333",
-    "build": "cp ./src/configs/firebaseConfig.example.ts ./src/configs/firebaseConfig.ts && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
