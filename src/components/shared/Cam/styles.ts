@@ -44,11 +44,15 @@ export const PreviewContainer = styled.div`
 
   position: absolute;
   top: 0;
+  left: 0;
   bottom: 0;
+
+  display: flex;
+  align-items: center;
+  flex-direction: center;
 
   width: var(--cam-container-width);
   z-index: 500;
-  transform: translateX(calc(-50% - var(--translation-total)));
 
   > img {
     z-index: 2;
