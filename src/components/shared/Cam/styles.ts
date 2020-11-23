@@ -35,7 +35,7 @@ export const CamContainer = styled.div`
   margin: 0 auto;
 
   > video {
-    height: 100%;
+    height: calc(var(--cam-container-width) / var(--aspect-ratio));
   }
 `;
 
