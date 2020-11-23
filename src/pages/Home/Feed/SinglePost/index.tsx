@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { FeedPosts } from '../../../../repositories/postRepository';
+import { FeedPosts } from '../../../../store/modules/posts';
 import AuthorPost from './AuthorPost';
 import Post from './Post';
 import SocialActivity from './SocialActivity';

@@ -3,7 +3,7 @@ import 'firebase/storage';
 import 'firebase/auth';
 import { ImageBase64 } from '../components';
 import { RequestStatusEnum } from '../store/modules/app';
-import { Post } from '../store/modules/posts';
+import { FeedPosts, Post } from '../store/modules/posts';
 import { User } from '../store/modules/user';
 import { resolvePhotoURL } from '../utils';
 import { RepositoryFunctionReturn } from './types';
@@ -94,12 +94,11 @@ export async function publishNewPost(
   };
 }
 
-export type FeedPosts = {
-  author: User;
-  post: Post;
-};
+export type GetFeedResponse = RepositoryFunctionReturn<{
+  posts: FeedPosts[];
+}>;
 
-export async function getFeed(): Promise<FeedPosts[]> {
+export async function getFeed(): Promise<GetFeedResponse> {
   const firebaseRef = firebase.firestore();
 
   const postsPromise = await firebaseRef
@@ -129,7 +128,22 @@ export async function getFeed(): Promise<FeedPosts[]> {
       }),
     );
 
-  const posts = await Promise.all(postsPromise).then(result => result);
+  const { posts, status } = await Promise.all(postsPromise)
+    .then(result => ({
+      posts: result as FeedPosts[],
+      status: RequestStatusEnum.RESOLVE,
+    }))
+    .catch(() => ({ posts: null, status: RequestStatusEnum.REJECT }));
 
-  return posts as FeedPosts[];
+  if (!posts || status === 'REJECT') {
+    return {
+      posts: [],
+      status,
+    };
+  }
+
+  return {
+    posts,
+    status,
+  };
 }
