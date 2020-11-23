@@ -9,11 +9,12 @@ const Post = ({ post, images }: PostProps) => {
     <Container>
       <p>{post}</p>
       <Images>
-        {images.map((image, index) => (
-          <ImageContainer key={index.toString()}>
-            <img src={image} alt="Imagem" />
-          </ImageContainer>
-        ))}
+        {images &&
+          images.map((image, index) => (
+            <ImageContainer key={index.toString()}>
+              <img src={image} alt="Imagem" />
+            </ImageContainer>
+          ))}
       </Images>
     </Container>
   );

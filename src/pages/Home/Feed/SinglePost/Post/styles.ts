@@ -23,6 +23,9 @@ export const ImageContainer = styled.div`
   border-radius: var(--radii-md);
   overflow: hidden;
   height: 20.8rem;
+  max-width: calc(20.8rem * (9 / 16));
+  align-items: center;
+  justify-content: center;
 
   scroll-snap-align: start;
 
