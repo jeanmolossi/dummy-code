@@ -13,6 +13,8 @@ export const Images = styled.div`
   gap: var(--spacing-md);
   overflow-x: auto;
   margin: var(--spacing-md) 0;
+
+  scroll-snap-type: x mandatory;
 `;
 
 export const ImageContainer = styled.div`
@@ -21,6 +23,8 @@ export const ImageContainer = styled.div`
   border-radius: var(--radii-md);
   overflow: hidden;
   height: 20.8rem;
+
+  scroll-snap-align: start;
 
   > img {
     object-fit: cover;

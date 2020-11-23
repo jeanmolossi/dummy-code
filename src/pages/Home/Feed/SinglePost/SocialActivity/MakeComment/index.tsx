@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Form } from '@unform/web';
 import { FiSend } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 import { Button } from '../../../../../../components';
+import { RootState } from '../../../../../../store/modules/rootTypes';
 import { Avatar } from '../../AuthorPost/styles';
 import { Container, AuthUser, InputController, InputBox } from './styles';
 
@@ -11,6 +13,10 @@ interface MakeCommentProps {
 }
 
 const MakeComment = ({ id, postId }: MakeCommentProps) => {
+  const { authUser } = useSelector((state: RootState) => ({
+    authUser: state.user.authUser,
+  }));
+
   const [focused, setFocused] = useState(false);
 
   return (
@@ -18,7 +24,10 @@ const MakeComment = ({ id, postId }: MakeCommentProps) => {
       <AuthUser>
         <Avatar variant="green">
           <img
-            src="http://192.168.0.104:3000/files/man-avatar.png"
+            src={
+              authUser.photoURL ||
+              `${process.env.REACT_APP_LOCAL_URL}/files/man-avatar.png`
+            }
             alt="Auth user"
           />
         </Avatar>
