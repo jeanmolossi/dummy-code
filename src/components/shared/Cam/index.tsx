@@ -62,7 +62,7 @@ const CamComponent = ({
   }, []);
 
   return (
-    <Container aspectRatio={aspectRatio}>
+    <Container aspectRatio={aspectRatio} $camIsOpen={camIsOpen}>
       <Cam
         ref={camRef}
         audio={false}

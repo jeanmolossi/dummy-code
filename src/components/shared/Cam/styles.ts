@@ -2,15 +2,20 @@ import styled from 'styled-components';
 
 interface ContainerProps {
   aspectRatio: number;
+  $camIsOpen?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
   --aspect-ratio: ${({ aspectRatio }) => aspectRatio};
+  --height: ${({ $camIsOpen = false }) =>
+    $camIsOpen
+      ? 'calc((100vw - var(--padding-md) * 2) / (var(--aspect-ratio)))'
+      : 0}
 
   position: relative;
-
+  transition: all 0.3s;
   width: calc(100vw - var(--padding-md) * 2);
-  height: calc((100vw - var(--padding-md) * 2) / (var(--aspect-ratio)));
+  height: --height;
   margin-bottom: var(--spacing-xl2);
 
   > video {
@@ -18,6 +23,7 @@ export const Container = styled.div<ContainerProps>`
     border-radius: var(--radii-md);
     overflow: hidden;
     transition: all 0.3s;
+    width: 100%;
   }
 `;
 
