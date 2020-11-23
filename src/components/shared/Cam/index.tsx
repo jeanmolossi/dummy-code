@@ -71,7 +71,6 @@ const CamComponent = ({
           facingMode,
         }}
         screenshotFormat="image/webp"
-        width="100%"
         style={{
           transform: `rotateY(180deg)`,
           height: camIsOpen ? '100%' : '0',
