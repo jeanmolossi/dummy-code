@@ -40,22 +40,25 @@ export const CamContainer = styled.div`
 `;
 
 export const PreviewContainer = styled.div`
+  --translation-total: calc(var(--padding-lg) + var(--spacing-sm));
+
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
+
   width: var(--cam-container-width);
-  z-index: 99999;
+  z-index: 500;
+  transform: translateX(calc(-50% - var(--translation-total)));
 
   > img {
     z-index: 2;
+    height: 100%;
     transform: rotateY(180deg);
 
     border-radius: var(--radii-md);
     overflow: hidden;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
   }
 `;
 
@@ -63,7 +66,7 @@ export const ActionButtons = styled.div`
   position: absolute;
   top: var(--spacing-md);
   right: var(--spacing-md);
-  z-index: 3;
+  z-index: 503;
 
   display: flex;
   flex-direction: column;

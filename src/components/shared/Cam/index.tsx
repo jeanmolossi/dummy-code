@@ -70,7 +70,6 @@ const CamComponent = ({
           audio={false}
           videoConstraints={{
             facingMode,
-            aspectRatio,
           }}
           screenshotFormat="image/webp"
           style={{
@@ -80,7 +79,7 @@ const CamComponent = ({
         />
 
         {!!preview && (
-          <PreviewContainer>
+          <>
             <ActionButtons>
               <Button variant="red" onClick={deletePhoto}>
                 <FiTrash2 />
@@ -90,15 +89,18 @@ const CamComponent = ({
                 <FiSave />
               </Button>
             </ActionButtons>
-            <img
-              src={preview}
-              className="screen-preview"
-              alt=""
-              style={{
-                transform: `rotateY(${facingMode ? '180deg' : '0'})`,
-              }}
-            />
-          </PreviewContainer>
+
+            <PreviewContainer>
+              <img
+                src={preview}
+                className="screen-preview"
+                alt=""
+                style={{
+                  transform: `rotateY(${facingMode ? '180deg' : '0'})`,
+                }}
+              />
+            </PreviewContainer>
+          </>
         )}
       </CamContainer>
 
