@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   FiCamera,
   FiCameraOff,
@@ -10,6 +10,7 @@ import Cam from 'react-webcam';
 import { Button } from '../../index';
 import {
   Container,
+  CamContainer,
   ButtonsContainer,
   PreviewContainer,
   ActionButtons,
@@ -63,34 +64,43 @@ const CamComponent = ({
 
   return (
     <Container aspectRatio={aspectRatio} $camIsOpen={camIsOpen}>
-      <Cam
-        ref={camRef}
-        audio={false}
-        videoConstraints={{
-          aspectRatio,
-          facingMode,
-        }}
-        screenshotFormat="image/webp"
-        style={{
-          transform: `rotateY(180deg)`,
-          display: camIsOpen ? 'initial' : 'none',
-        }}
-      />
+      <CamContainer>
+        <Cam
+          ref={camRef}
+          audio={false}
+          videoConstraints={{
+            facingMode,
+            aspectRatio,
+          }}
+          screenshotFormat="image/webp"
+          style={{
+            transform: `rotateY(${facingMode ? '180deg' : '0'})`,
+            display: camIsOpen ? 'initial' : 'none',
+          }}
+        />
 
-      {!!preview && (
-        <PreviewContainer>
-          <ActionButtons>
-            <Button variant="red" onClick={deletePhoto}>
-              <FiTrash2 />
-            </Button>
+        {!!preview && (
+          <PreviewContainer>
+            <ActionButtons>
+              <Button variant="red" onClick={deletePhoto}>
+                <FiTrash2 />
+              </Button>
 
-            <Button variant="green" onClick={handleSaveAction}>
-              <FiSave />
-            </Button>
-          </ActionButtons>
-          <img src={preview} className="screen-preview" alt="" />
-        </PreviewContainer>
-      )}
+              <Button variant="green" onClick={handleSaveAction}>
+                <FiSave />
+              </Button>
+            </ActionButtons>
+            <img
+              src={preview}
+              className="screen-preview"
+              alt=""
+              style={{
+                transform: `rotateY(${facingMode ? '180deg' : '0'})`,
+              }}
+            />
+          </PreviewContainer>
+        )}
+      </CamContainer>
 
       <ButtonsContainer>
         <Button

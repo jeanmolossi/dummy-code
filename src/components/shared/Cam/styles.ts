@@ -12,18 +12,30 @@ export const Container = styled.div<ContainerProps>`
       ? 'calc((100vw - var(--padding-md) * 2) / (var(--aspect-ratio)))'
       : 0}
 
-  position: relative;
+  --device-container-width: calc(100vw - var(--padding-md) * 2);
+
   transition: all 0.3s;
-  width: calc(100vw - var(--padding-md) * 2);
+  width: var(--device-container-width);
   height: --height;
   margin-bottom: var(--spacing-xl2);
+`;
+
+export const CamContainer = styled.div`
+  --cam-container-width: calc(20.8rem - var(--padding-md) * 2);
+
+  background-color: #333;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cam-container-width);
+  height: calc(var(--cam-container-width) / var(--aspect-ratio));
+  overflow: hidden;
+  border-radius: var(--radii-md);
+  margin: 0 auto;
 
   > video {
-    box-shadow: 0 4px 16px var(--grey-300);
-    border-radius: var(--radii-md);
-    overflow: hidden;
-    transition: all 0.3s;
-    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -33,7 +45,7 @@ export const PreviewContainer = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  width: var(--cam-container-width);
   z-index: 99999;
 
   > img {
@@ -42,6 +54,8 @@ export const PreviewContainer = styled.div`
 
     border-radius: var(--radii-md);
     overflow: hidden;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 
