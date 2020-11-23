@@ -1,4 +1,4 @@
-import { all, debounce, put, takeLatest } from 'redux-saga/effects';
+import { all, debounce, put } from 'redux-saga/effects';
 import { getFeed } from '../../../repositories/postRepository';
 import { UpdateFeed } from './actions';
 import { GetFeedAction } from './types';
