@@ -73,7 +73,7 @@ const CamComponent = ({
         screenshotFormat="image/webp"
         style={{
           transform: `rotateY(180deg)`,
-          height: camIsOpen ? '100%' : '0',
+          display: camIsOpen ? 'initial' : 'none',
         }}
       />
 
