@@ -63,7 +63,7 @@ export async function publishNewPost(
   if (images.length > 0) {
     const imagesAsString = images.map(image => image as string);
 
-    const storageRef = firebase.storage().ref();
+    const storageRef = firebase.storage().ref('/posts');
     const imagesRef = imagesAsString.map((image: string, index) => {
       const ref = storageRef
         .child(`/${postId}/${index}`)
@@ -146,4 +146,26 @@ export async function getFeed(): Promise<GetFeedResponse> {
     posts,
     status,
   };
+}
+
+export type GetPostById = RepositoryFunctionReturn<{
+  post: Post | null;
+}>;
+
+export async function getPostById(postId: string): Promise<GetPostById> {
+  const { status, post } = await firebase
+    .firestore()
+    .collection('posts')
+    .doc(postId)
+    .get()
+    .then(doc => ({
+      status: RequestStatusEnum.RESOLVE,
+      post: doc.data() as Post,
+    }))
+    .catch(() => ({
+      status: RequestStatusEnum.REJECT,
+      post: null,
+    }));
+
+  return { status, post };
 }
