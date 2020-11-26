@@ -38,3 +38,18 @@ export const UserInfo = styled.div`
     color: var(--grey-100);
   }
 `;
+
+export const MoreOptions = styled.button`
+  display: flex;
+  align-items: center;
+  height: initial;
+  background: transparent;
+  border: 0;
+  color: var(--grey-100);
+`;
+
+export const ButtonsContainer = styled.div`
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+`;
