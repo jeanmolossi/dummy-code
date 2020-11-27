@@ -15,7 +15,7 @@ const SinglePost = ({ post, author }: SinglePostProps) => {
 
   return (
     <Container>
-      <AuthorPost {...author} created_at={created_at} />
+      <AuthorPost {...author} postId={postId} created_at={created_at} />
 
       <Post {...post} />
 

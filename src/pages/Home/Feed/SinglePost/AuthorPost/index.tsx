@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { formatDistance } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { FiEdit, FiMoreVertical, FiTrash2, FiX } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Modal } from '../../../../../components';
+import { ExcludePost } from '../../../../../store/modules/posts';
 import { RootState } from '../../../../../store/modules/rootTypes';
 import { User } from '../../../../../store/modules/user';
 import { useModal } from '../../../../../utils';
@@ -18,14 +19,23 @@ import {
 
 interface AuthorPostProps extends User {
   created_at: number;
+  postId: string;
 }
 
-const AuthorPost = ({ uid, name, photoURL, created_at }: AuthorPostProps) => {
+const AuthorPost = ({
+  uid,
+  name,
+  photoURL,
+  postId,
+  created_at,
+}: AuthorPostProps) => {
   const {
     isOpen: isOpenOptions,
     onClose: onCloseOptions,
     onOpen: onOpenOptions,
   } = useModal();
+
+  const dispatch = useDispatch();
 
   const { authUser } = useSelector((state: RootState) => ({
     authUser: state.user.authUser,
@@ -35,6 +45,11 @@ const AuthorPost = ({ uid, name, photoURL, created_at }: AuthorPostProps) => {
     addSuffix: true,
     locale: ptBR,
   });
+
+  const handleDeletePost = useCallback(() => {
+    dispatch(ExcludePost({ postId }));
+    onCloseOptions();
+  }, [postId, dispatch, onCloseOptions]);
 
   return (
     <Container>
@@ -67,7 +82,7 @@ const AuthorPost = ({ uid, name, photoURL, created_at }: AuthorPostProps) => {
             <FiEdit /> Editar
           </Button>
 
-          <Button variant="red">
+          <Button variant="red" onClick={handleDeletePost}>
             <FiTrash2 /> Deletar
           </Button>
 
