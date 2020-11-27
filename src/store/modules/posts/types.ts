@@ -43,7 +43,20 @@ export type SendCommentPostAction = ActionReturnType<
   SendCommentPostPayload
 >;
 
-export type PostsActions = GetFeedAction | UpdateFeedAction;
+export type ExcludePostPayload = {
+  postId: string;
+};
+
+export type ExcludePostAction = ActionReturnType<
+  '@posts/EXCLUDE_POST',
+  ExcludePostPayload
+>;
+
+/**
+ * @section MAIN STATE AND MAIN ACTIONS
+ */
+
+export type PostsActions = GetFeedAction | UpdateFeedAction | ExcludePostAction;
 
 export type PostsState = {
   feed: FeedPosts[];

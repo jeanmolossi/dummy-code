@@ -169,3 +169,37 @@ export async function getPostById(postId: string): Promise<GetPostById> {
 
   return { status, post };
 }
+
+export type ExcludePostResponse = RepositoryFunctionReturn<{
+  post: Post | null;
+}>;
+
+export async function ExcludePostRepository(
+  postId: string,
+): Promise<ExcludePostResponse> {
+  const { post } = await getPostById(postId);
+
+  const status = await firebase
+    .firestore()
+    .collection('posts')
+    .doc(postId)
+    .delete()
+    .then(() => RequestStatusEnum.RESOLVE)
+    .catch(() => RequestStatusEnum.REJECT);
+
+  const images = await firebase
+    .storage()
+    .ref('/posts')
+    .child(`/${postId}`)
+    .listAll()
+    .then(response => response.items);
+
+  const results = images.map(item => item.delete());
+
+  await Promise.all(results).then(response => response);
+
+  return {
+    status,
+    post,
+  };
+}

@@ -1,9 +1,16 @@
 import { all, debounce, put, takeLatest } from 'redux-saga/effects';
 import { sendPostComment } from '../../../repositories/commentRepository';
-import { getFeed } from '../../../repositories/postRepository';
+import {
+  getFeed,
+  ExcludePostRepository,
+} from '../../../repositories/postRepository';
 import { RequestStatusEnum, UpdateRequestStatus } from '../app';
 import { GetFeed, UpdateFeed } from './actions';
-import { GetFeedAction, SendCommentPostAction } from './types';
+import {
+  ExcludePostAction,
+  GetFeedAction,
+  SendCommentPostAction,
+} from './types';
 
 function* GetFeedSaga() {
   const { posts } = yield getFeed();
@@ -30,10 +37,30 @@ function* SendCommentPost({ payload }: SendCommentPostAction) {
   yield put(GetFeed());
 }
 
+function* ExcludePost({ payload }: ExcludePostAction) {
+  const { postId } = payload;
+
+  yield put(UpdateRequestStatus('PENDING', 'Removendo post...'));
+
+  const { status } = yield ExcludePostRepository(postId);
+
+  yield put(
+    UpdateRequestStatus(
+      status,
+      'Removemos seu post, ele não está mais disponível',
+    ),
+  );
+}
+
 export const postsSaga = all([
   takeLatest<SendCommentPostAction['type'], typeof SendCommentPost>(
     '@posts/SEND_COMMENT_POST',
     SendCommentPost,
+  ),
+
+  takeLatest<ExcludePostAction['type'], typeof ExcludePost>(
+    '@posts/EXCLUDE_POST',
+    ExcludePost,
   ),
 
   debounce<GetFeedAction['type'], typeof GetFeedSaga>(

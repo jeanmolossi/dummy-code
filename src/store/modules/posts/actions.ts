@@ -1,4 +1,6 @@
 import {
+  ExcludePostAction,
+  ExcludePostPayload,
   GetFeedAction,
   SendCommentPostAction,
   SendCommentPostPayload,
@@ -25,6 +27,13 @@ export function SendCommentPost(
 ): SendCommentPostAction {
   return {
     type: '@posts/SEND_COMMENT_POST',
+    payload,
+  };
+}
+
+export function ExcludePost(payload: ExcludePostPayload): ExcludePostAction {
+  return {
+    type: '@posts/EXCLUDE_POST',
     payload,
   };
 }
